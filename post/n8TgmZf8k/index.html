@@ -1,0 +1,390 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SQL | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="SQL | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="MySQL 安裝
+
+MySQL 5.7 安裝
+MySQL 8.0 WorkBench 登入錯誤
+降版
+
+Domain-Specific Language (DSL)
+某個領域的特定語言
+RDBMS 關聯式資料庫
+可以從 A 資料庫查到 B ..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              SQL
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="mysql-安裝">MySQL 安裝</h2>
+<ul>
+<li><a href="https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034">MySQL 5.7 安裝</a></li>
+<li><a href="https://actom.me/blog/macos-brew-%E5%AE%89%E8%A3%85-mysql-8-0%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E6%8A%A5%E9%94%99.html">MySQL 8.0 WorkBench 登入錯誤</a></li>
+<li><a href="https://blog.othree.net/log/2018/09/26/homebrew-rollback-mysql-57/">降版</a></li>
+</ul>
+<h3 id="domain-specific-language-dsl">Domain-Specific Language (DSL)</h3>
+<p>某個領域的特定語言</p>
+<h3 id="rdbms-關聯式資料庫">RDBMS 關聯式資料庫</h3>
+<p>可以從 A 資料庫查到 B 資料庫的資料，互相可已關聯起來</p>
+<h2 id="建立資料庫">建立資料庫</h2>
+<pre><code class="language-sql">create database `super_store`;
+</code></pre>
+<h2 id="使用資料庫">使用資料庫</h2>
+<pre><code class="language-sql">use super_store;
+</code></pre>
+<h2 id="刪除資料庫">刪除資料庫</h2>
+<pre><code class="language-sql">drop database `super_store`;
+</code></pre>
+<h2 id="table">table</h2>
+<p>PK = 主鍵<br>
+NN = NotNull 不能為空<br>
+UQ = Uniq 唯一</p>
+<h2 id="追加欄位">追加欄位</h2>
+<pre><code class="language-sql">ALTER TABLE `heroes`
+ADD COLUMN super_power VARCHAR(100);
+</code></pre>
+<h2 id="刪除欄位">刪除欄位</h2>
+<pre><code class="language-sql=">ALTER TABLE `heroes`
+DROP COLUMN super_power;
+</code></pre>
+<h2 id="刪除資料表">刪除資料表</h2>
+<pre><code class="language-sql">DROP TABLE `heroes`
+</code></pre>
+<h2 id="新增資料">新增資料</h2>
+<pre><code class="language-sql">INSERT INTO heroes
+(name, genderm age, hero_level, gero_rank, description) VALUES ()
+</code></pre>
+<h2 id="查詢全部資料">查詢全部資料</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes;
+</code></pre>
+<h2 id="查詢所有-s-級英雄資料">查詢所有 S 級英雄資料</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level = 'S'
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.select(:name, :gender).where(hero_level: 'S', gender: 'F')
+</code></pre>
+<h2 id="null-判斷">NULL 判斷</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age IS NULL;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(age: nil)
+</code></pre>
+<h2 id="like">like</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE name LIKE '%背心%';
+</code></pre>
+<p><code>%</code> 為萬用字元，前面的拿掉就是 背心...開頭</p>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(&quot;name like '%背心%'&quot;)
+</code></pre>
+<h2 id="區間查詢">區間查詢</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age &gt;= 10 and age &lt;= 25;
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age BETWEEN 10 AND 25;
+</code></pre>
+<pre><code class="language-ruby">Hero.where(age: 10..25)
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age &gt;= 10;
+</code></pre>
+<pre><code class="language-ruby">Hero.where('age &gt;= 10') # 加字串
+</code></pre>
+<h2 id="or">OR</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level = 'S' or hero_level = 'A';
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level IN('S', 'A');
+</code></pre>
+<h2 id="不等於">不等於</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level &lt;&gt; 'S';
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level != 'S';
+</code></pre>
+<h2 id="更新資料-update">更新資料 UPDATE</h2>
+<pre><code class="language-sql">UPDATE heroes
+SET age = 10
+WHERE id = 25
+</code></pre>
+<h2 id="大量更新資料-safe_mode">大量更新資料 Safe_mode</h2>
+<pre><code class="language-sql">UPDATE heroes
+SET age = age + 1;
+-- 會壞掉
+-- Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -&gt; SQL Editor and reconnect.
+</code></pre>
+<pre><code class="language-sql">set sql_safe_updates = 0;
+UPDATE heroes
+SET age = age + 1;
+</code></pre>
+<h2 id="刪除資料庫-2">刪除資料庫</h2>
+<pre><code class="language-sql">set sql_safe_updates = 0;
+
+delete from heroes
+where hero_level = 'C';
+
+select * from heroes;
+</code></pre>
+<h2 id="計算數量-count">計算數量 count</h2>
+<pre><code class="language-sql">select count(*)
+from heroes
+where hero_level = 'A';
+-- 只會顯示 18
+</code></pre>
+<p><code>Hero.where(hero_level: 'A').count</code><br>
+<code>Hero.count(hero_level: 'A')</code></p>
+<h2 id="加總-平均">加總、平均</h2>
+<pre><code class="language-sql">select sum(age)
+from heroes
+where hero_level = 'A' AND age IS NOT NULL;
+</code></pre>
+<pre><code class="language-sql">select avg(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<h2 id="最大-最小">最大 最小</h2>
+<pre><code class="language-sql">select min(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<pre><code class="language-sql">select max(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<h2 id="分組-group">分組 GROUP</h2>
+<pre><code class="language-sql">select hero_level as '英雄等級',
+ avg(age) as '平均年齡', min(age), max(age)
+from heroes
+group by hero_level;
+</code></pre>
+<h2 id="剔除重複的資料">剔除重複的資料</h2>
+<pre><code class="language-sql">select distinct danger_level
+ from monsters;
+</code></pre>
+<h2 id="排序">排序</h2>
+<pre><code class="language-sql">-- 反向排序 age 由大到小
+select *
+from heroes
+where hero_level = 'S'
+order by age DESC;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(hero_level: 'S').order('age DESC')
+Hero.where(hero_level: 'S').order(age: :desc)
+</code></pre>
+<h2 id="限制數量">限制數量</h2>
+<pre><code class="language-sql">-- 反向排序 age 由大到小
+select *
+from heroes
+where hero_level = 'S'
+order by age DESC
+LIMIT 3;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(hero_level: 'S').order(age: :desc).limit(3)
+</code></pre>
+<h2 id="交集">交集</h2>
+<pre><code class="language-sql">-- inner join
+SELECT * FROM t1
+join t2
+on t1.username = t2.name
+</code></pre>
+<pre><code class="language-sql">-- left join
+SELECT * FROM t1
+left join t2
+on t1.username = t2.name
+</code></pre>
+<pre><code class="language-sql">-- right join
+SELECT * FROM t1
+right join t2
+on t1.username = t2.name
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#mysql-%E5%AE%89%E8%A3%9D">MySQL 安裝</a>
+<ul>
+<li><a href="#domain-specific-language-dsl">Domain-Specific Language (DSL)</a></li>
+<li><a href="#rdbms-%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E5%BA%AB">RDBMS 關聯式資料庫</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB">建立資料庫</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%B3%87%E6%96%99%E5%BA%AB">使用資料庫</a></li>
+<li><a href="#%E5%88%AA%E9%99%A4%E8%B3%87%E6%96%99%E5%BA%AB">刪除資料庫</a></li>
+<li><a href="#table">table</a></li>
+<li><a href="#%E8%BF%BD%E5%8A%A0%E6%AC%84%E4%BD%8D">追加欄位</a></li>
+<li><a href="#%E5%88%AA%E9%99%A4%E6%AC%84%E4%BD%8D">刪除欄位</a></li>
+<li><a href="#%E5%88%AA%E9%99%A4%E8%B3%87%E6%96%99%E8%A1%A8">刪除資料表</a></li>
+<li><a href="#%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99">新增資料</a></li>
+<li><a href="#%E6%9F%A5%E8%A9%A2%E5%85%A8%E9%83%A8%E8%B3%87%E6%96%99">查詢全部資料</a></li>
+<li><a href="#%E6%9F%A5%E8%A9%A2%E6%89%80%E6%9C%89-s-%E7%B4%9A%E8%8B%B1%E9%9B%84%E8%B3%87%E6%96%99">查詢所有 S 級英雄資料</a></li>
+<li><a href="#null-%E5%88%A4%E6%96%B7">NULL 判斷</a></li>
+<li><a href="#like">like</a></li>
+<li><a href="#%E5%8D%80%E9%96%93%E6%9F%A5%E8%A9%A2">區間查詢</a></li>
+<li><a href="#or">OR</a></li>
+<li><a href="#%E4%B8%8D%E7%AD%89%E6%96%BC">不等於</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E8%B3%87%E6%96%99-update">更新資料 UPDATE</a></li>
+<li><a href="#%E5%A4%A7%E9%87%8F%E6%9B%B4%E6%96%B0%E8%B3%87%E6%96%99-safe_mode">大量更新資料 Safe_mode</a></li>
+<li><a href="#%E5%88%AA%E9%99%A4%E8%B3%87%E6%96%99%E5%BA%AB-2">刪除資料庫</a></li>
+<li><a href="#%E8%A8%88%E7%AE%97%E6%95%B8%E9%87%8F-count">計算數量 count</a></li>
+<li><a href="#%E5%8A%A0%E7%B8%BD-%E5%B9%B3%E5%9D%87">加總、平均</a></li>
+<li><a href="#%E6%9C%80%E5%A4%A7-%E6%9C%80%E5%B0%8F">最大 最小</a></li>
+<li><a href="#%E5%88%86%E7%B5%84-group">分組 GROUP</a></li>
+<li><a href="#%E5%89%94%E9%99%A4%E9%87%8D%E8%A4%87%E7%9A%84%E8%B3%87%E6%96%99">剔除重複的資料</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F">排序</a></li>
+<li><a href="#%E9%99%90%E5%88%B6%E6%95%B8%E9%87%8F">限制數量</a></li>
+<li><a href="#%E4%BA%A4%E9%9B%86">交集</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/ov9TpNk42/">
+              <h3 class="post-title">
+                Mac - 終端機常用快速鍵
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

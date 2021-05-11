@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ruby - Array | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ruby - Array | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="# 建立 Array
+array = Array.new #=&gt; []
+array = [] #=&gt; []
+array = %w(1, 2, 3) #=&gt; [&quot;1,&quot;, &quot;2,&quot;, ..." />
+    <meta name="keywords" content="Array,陣列,Ruby" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Ruby - Array
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://blog.ydx.tw/tag/-mshmYQDZ/" class="post-tag">
+                  # Array
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/K2g9Mhx7UI/" class="post-tag">
+                  # 陣列
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/n-X-2DAVZ/" class="post-tag">
+                  # Ruby
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code class="language-ruby"># 建立 Array
+array = Array.new #=&gt; []
+array = [] #=&gt; []
+array = %w(1, 2, 3) #=&gt; [&quot;1,&quot;, &quot;2,&quot;, &quot;3&quot;]  %w 會把元素轉換成字串格式
+array = Array.new(3) #=&gt; [nil, nil, nil]
+array = Array.new(3, true) #=&gt; [true, true, true]
+(1..10).to_a #=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+# 新增元素至陣列
+array = [1, 2, 3, 4, 5]
+array.push(6) #=&gt; [1, 2, 3, 4, 5, 6]
+array &lt;&lt; 7 #=&gt; [1, 2, 3, 4, 5, 6, 7]
+array.unshift(0) # 從陣列前面塞元素 #=&gt; [0, 1, 2, 3, 4, 5]
+
+
+# 讀取陣列
+# 特殊的取值方式，取陣列的第一個或最後一個元素
+array.first #=&gt; 1
+array.last #=&gt; 5
+# 取陣列的前 n 個元素
+array.take(3) #=&gt; [1, 2, 3]
+# 取陣列第 n 個元素之後的值，捨棄前 n 個元素後剩下的值
+array.drop(3) #=&gt; [4, 5]
+
+
+
+# 對超出陣列索引的範圍產生錯誤
+# 或在發生錯誤時提供預設的錯誤訊息，可以使用 fetch
+array = [1, 2, 3, 4, 5]
+array.fetch(100) #=&gt;IndexError (index 100 outside of array bounds: -5...5)
+array.fetch(100, &quot;Oops!&quot;) #=&gt; &quot;Oops!&quot;
+
+browsers = ['Chrome', 'Firefox', 'Safari', 'Opera', 'IE']
+
+# 取陣列的個數
+browsers.length #=&gt; 5
+browsers.count #=&gt; 5
+browsers.size #=&gt; 5
+
+# length 與 size 相等
+
+# 檢查陣列是否有無值，問陣列是否為空？
+browsers.empty? #=&gt; false
+
+# 檢查陣列是否有特定的元素
+browsers.include?('Konqueror') #=&gt; false
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/zAn6OU61F/">
+              <h3 class="post-title">
+                HTML - Flex
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

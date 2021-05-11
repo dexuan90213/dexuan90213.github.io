@@ -1,0 +1,276 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JavaScript - 變數作用域、map、filter、 reduce | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="JavaScript - 變數作用域、map、filter、 reduce | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="變數作用域
+
+全域
+函式內
+
+
+在函式裡面操作變數，如果函式裡面有定義變數，則拿裡面的變數，如果裡面沒有，會網上找外面的同名變數。
+
+變數作用域提升 hoisting
+// you see:
+console.log(x);
+var x = ..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              JavaScript - 變數作用域、map、filter、 reduce
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="變數作用域">變數作用域</h2>
+<ul>
+<li>全域</li>
+<li>函式內</li>
+</ul>
+<blockquote>
+<p>在函式裡面操作變數，如果函式裡面有定義變數，則拿裡面的變數，如果裡面沒有，會網上找外面的同名變數。</p>
+</blockquote>
+<p>變數作用域提升 hoisting</p>
+<pre><code class="language-javascript=">// you see:
+console.log(x);
+var x = 1;
+// undefined
+
+// it runs
+var x;
+console.log(x);
+x = 1;
+
+// let
+console.log(y);
+let y = 1;
+// ReferenceError: Cannot access 'y' before initialization
+
+
+// function hoisting
+foo()
+
+function foo() {
+  console.log('hohoho');
+}
+// hohoho
+</code></pre>
+<h3 id="把函式指定給變數-匿名函式">把函式指定給變數 -&gt; 匿名函式</h3>
+<pre><code class="language-javascript=">let addTwenty = function(x) {
+  return x + 20
+}
+addTwenty(1)
+
+// 21
+</code></pre>
+<h3 id="匿名函式沒有-name-而且本體不會-hoisting">匿名函式沒有 name 而且本體不會 hoisting</h3>
+<pre><code class="language-javascript=">addTwenty(1)
+
+let addTwenty = function(x) {
+  return x + 20
+}
+
+// addTwenty(1)
+//^
+//ReferenceError: Cannot access 'addTwenty' before initialization
+</code></pre>
+<h3 id="把函式當作集合的值">把函式當作集合的值</h3>
+<pre><code class="language-javascript=">let Math = {
+ abs: function(i) {
+   return i &gt; 0 ? i : -i
+ }
+}
+
+Math.abs(-100);
+
+//
+
+console.log(console.log)
+let p = console.log
+
+//[Function: bound consoleCall]
+//fff
+</code></pre>
+<h2 id="map-filter-reduce">map、filter、reduce</h2>
+<ul>
+<li>map 數量不會變</li>
+<li>filter 回傳 boolean</li>
+</ul>
+<pre><code class="language-javascript=">// map
+
+let result = [1, 2, 3, 4, 5 ,6, 7].map(function (i) { return i * 20})
+console.log(result)
+
+// filter
+let r2 = [1, 2, 3, 4, 5 ,6, 7].filter(function (i) { return i % 2 === 0})
+console.log(r2)
+
+// 可以串下去
+let r3 = [1, 2, 3, 4, 5 ,6, 7].map(function(i) { return i * 5})
+                              .filter(function(i) { return i % 10 === 0})
+                              .map(function(i) { return i + 4})
+console.log(r3);                              
+
+// reduce
+let r4 = [1, 2, 3, 4, 5 ,6, 7].reduce(function(accu, i) {
+  return accu + i
+}, 0)
+console.log(r4)
+</code></pre>
+<pre><code class="language-javascript=">function multiplyFive(i) {
+  return i * 5;
+}
+
+let r3 = [1, 2, 3, 4, 5, 6, 7].map(multiplyFive)
+                              .filter(function(i) { return i % 10 == 0})
+                              .map(function(i) { return i + 4 })
+console.log(r3)
+</code></pre>
+<ul>
+<li>reduce 沒有給起始值，會拿陣列第一個元素當作起始值</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%AE%8A%E6%95%B8%E4%BD%9C%E7%94%A8%E5%9F%9F">變數作用域</a>
+<ul>
+<li><a href="#%E6%8A%8A%E5%87%BD%E5%BC%8F%E6%8C%87%E5%AE%9A%E7%B5%A6%E8%AE%8A%E6%95%B8-%E5%8C%BF%E5%90%8D%E5%87%BD%E5%BC%8F">把函式指定給變數 -&gt; 匿名函式</a></li>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E5%BC%8F%E6%B2%92%E6%9C%89-name-%E8%80%8C%E4%B8%94%E6%9C%AC%E9%AB%94%E4%B8%8D%E6%9C%83-hoisting">匿名函式沒有 name 而且本體不會 hoisting</a></li>
+<li><a href="#%E6%8A%8A%E5%87%BD%E5%BC%8F%E7%95%B6%E4%BD%9C%E9%9B%86%E5%90%88%E7%9A%84%E5%80%BC">把函式當作集合的值</a></li>
+</ul>
+</li>
+<li><a href="#map-filter-reduce">map、filter、reduce</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/EpUPHZLAj/">
+              <h3 class="post-title">
+                JavaScript - 資料
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

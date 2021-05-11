@@ -1,0 +1,315 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ruby - 實體方法及類別方法（存取控制、Module） | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ruby - 實體方法及類別方法（存取控制、Module） | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+實體變數預設值 nil
+區域變數沒有預設值
+puts 印不出 nil 會印出空白
+p 才能印出 nil
+
+Ruby 沒有屬性，雖然看起來像是存取屬性，但其實是個方法name=()
+def name=(new_name)
+  @name =..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Ruby - 實體方法及類別方法（存取控制、Module）
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <ol>
+<li>實體變數預設值 <code>nil</code></li>
+<li>區域變數沒有預設值</li>
+<li><code>puts</code> 印不出 <code>nil</code> 會印出空白</li>
+<li><code>p</code> 才能印出 <code>nil</code></li>
+</ol>
+<h2 id="ruby-沒有屬性雖然看起來像是存取屬性但其實是個方法name">Ruby 沒有屬性，雖然看起來像是存取屬性，但其實是個方法<code>name=()</code></h2>
+<pre><code class="language-ruby">def name=(new_name)
+  @name = new_name
+end
+</code></pre>
+<h2 id="展開一個-age-存取的方法">展開一個 age 存取的方法</h2>
+<p>但無法自定義</p>
+<pre><code class="language-ruby">attr_reader :age # getter
+attr_writer :age # setter
+attr_accessor :age # getter + setter
+</code></pre>
+<h2 id="同名方法">同名方法</h2>
+<p>當方法名字相同重新定義，前面同名的方法會被後面的方法蓋掉<br>
+類別同名重新定義，後面定義的不會蓋掉前面的，會互相融合，又稱 Open Class</p>
+<pre><code class="language-ruby=">class Cat
+  def hello
+    puts &quot;hi&quot;
+  end
+end
+
+class Cat
+  def world
+    puts &quot;world&quot;
+  end
+
+  def hello # 會蓋掉前面定義的同名方法
+    puts &quot;hihihi&quot;
+  end
+end
+
+kitty = Cat.new
+kitty.hello
+kitty.world
+</code></pre>
+<h3 id="open-class">Open Class</h3>
+<pre><code class="language-ruby="># Open Class
+class Integer
+  def days
+    &quot;#{self} days&quot;
+  end
+end
+
+puts 3.days
+puts 5.days
+</code></pre>
+<h2 id="alias-保留原有的方法並加入自訂的方法">alias 保留原有的方法，並加入自訂的方法</h2>
+<pre><code class="language-ruby=">class Integer
+  alias :old_plus :+
+  # alias_method(new_name, old_name)
+
+  def +(n)
+    puts &quot;hey hey hey&quot;
+    self.old_plus(n)
+  end
+end
+
+p 1 + 2
+p 3 + 5
+</code></pre>
+<h2 id="存取控制">存取控制</h2>
+<h3 id="封裝-encapsulation">封裝 encapsulation</h3>
+<ol>
+<li>public</li>
+<li>private</li>
+<li>protected</li>
+</ol>
+<p>沒有特別標明的預設是 <code>public</code> 公開的</p>
+<pre><code class="language-ruby=">  def say_hello
+    gossip # Ruby 2.7 後可以 self.gossip
+  end
+
+  # 到 a 方法都是 private
+  private
+  def gossip
+  end
+end
+
+kitty = Cat.new
+kitty.say_hello
+</code></pre>
+<p><strong><code>private</code> 不能有明確的訊息接收者(reciver)，也就是不能有<code>小數點.</code> 前面的物件</strong></p>
+<h3 id="查看物件有哪些-private-方法">查看物件有哪些 private 方法</h3>
+<pre><code class="language-ruby">p Object.private_methods
+</code></pre>
+<p><strong><code>protected</code> 不限定有沒有明確的訊息接收者</strong></p>
+<h2 id="模組-module">模組 Module</h2>
+<pre><code class="language-ruby=">module Flyable
+  def fly
+    puts &quot;Fly!!!&quot;
+  end
+end
+
+class Cat
+  include Flyable
+end
+
+kitty = Cat.new
+kitty.fly
+</code></pre>
+<ol>
+<li>模組不能繼承 Flyable &lt; someModule</li>
+<li>模組不能實體化 Flyable.new</li>
+</ol>
+<p><code>superclass</code> 問類別的上一層模組</p>
+<pre><code class="language-ruby">Class.superclass
+=&gt; Module
+</code></pre>
+<p>查看 Class 有的方法<br>
+p Class.instance_methods<br>
+p Module.instance_methods</p>
+<p>計算方法的數量<br>
+p Class.instance_methods.count<br>
+p Module.instance_methods.count</p>
+<p>陣列相減，查看差異的方法<br>
+p Class.instance_methods - Module.instance_methods</p>
+<p><code>include</code> 引入後，類別就有模組的實體方法<br>
+<code>extend</code> 擴充會把模組的方法變成類別的方法</p>
+<h3 id="namespace">namespace</h3>
+<p>不同 Module 相同 Class 名稱</p>
+<pre><code class="language-ruby=">module A
+  class Cat
+  end
+end
+
+module B
+  class Cat
+  end
+end
+
+kitty = A::Cat.new
+nancy = B::Cat.new
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#ruby-%E6%B2%92%E6%9C%89%E5%B1%AC%E6%80%A7%E9%9B%96%E7%84%B6%E7%9C%8B%E8%B5%B7%E4%BE%86%E5%83%8F%E6%98%AF%E5%AD%98%E5%8F%96%E5%B1%AC%E6%80%A7%E4%BD%86%E5%85%B6%E5%AF%A6%E6%98%AF%E5%80%8B%E6%96%B9%E6%B3%95name">Ruby 沒有屬性，雖然看起來像是存取屬性，但其實是個方法<code>name=()</code></a></li>
+<li><a href="#%E5%B1%95%E9%96%8B%E4%B8%80%E5%80%8B-age-%E5%AD%98%E5%8F%96%E7%9A%84%E6%96%B9%E6%B3%95">展開一個 age 存取的方法</a></li>
+<li><a href="#%E5%90%8C%E5%90%8D%E6%96%B9%E6%B3%95">同名方法</a>
+<ul>
+<li><a href="#open-class">Open Class</a></li>
+</ul>
+</li>
+<li><a href="#alias-%E4%BF%9D%E7%95%99%E5%8E%9F%E6%9C%89%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%A6%E5%8A%A0%E5%85%A5%E8%87%AA%E8%A8%82%E7%9A%84%E6%96%B9%E6%B3%95">alias 保留原有的方法，並加入自訂的方法</a></li>
+<li><a href="#%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6">存取控制</a>
+<ul>
+<li><a href="#%E5%B0%81%E8%A3%9D-encapsulation">封裝 encapsulation</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%89%A9%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B-private-%E6%96%B9%E6%B3%95">查看物件有哪些 private 方法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E7%B5%84-module">模組 Module</a>
+<ul>
+<li><a href="#namespace">namespace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/p5TIU7z5n/">
+              <h3 class="post-title">
+                Ruby - Block、Proc
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

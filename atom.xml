@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.ydx.tw</id>
+    <title>YDX</title>
+    <updated>2020-03-25T16:17:07.536Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.ydx.tw"/>
+    <link rel="self" href="https://blog.ydx.tw/atom.xml"/>
+    <subtitle>me@ydx.tw</subtitle>
+    <logo>https://blog.ydx.tw/images/avatar.png</logo>
+    <icon>https://blog.ydx.tw/favicon.ico</icon>
+    <rights>All rights reserved 2020, YDX</rights>
+    <entry>
+        <title type="html"><![CDATA[Ruby - 物件導向]]></title>
+        <id>https://blog.ydx.tw/post/jGiXQvEBd/</id>
+        <link href="https://blog.ydx.tw/post/jGiXQvEBd/">
+        </link>
+        <updated>2020-03-25T15:58:23.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="難以修改">難以修改</h2>
+<ul>
+<li>欠缺設計時，不受管理的依賴關係很容易造成嚴重破壞，因為這些物件之間彼此暸解太多。</li>
+<li>在小型規模的程式裡，差勁的設計並無大礙，即使每個物件都彼此連接在一起，只要你的腦袋能夠全盤掌握，那麼你仍然可以改進這支程式。</li>
+</ul>
+<h2 id="設計的實際定義">設計的實際定義</h2>
+<ul>
+<li>實用性的設計不會去預測應用程式可能會面臨什麼，而是能夠去適應變化，適應那些還不知道的變化。</li>
+<li>實用性設計不會猜測未來，使你保有多種選項面對未來的變化。</li>
+<li>設計的目的是使你<em>日後仍然可以繼續設計</em>，而設計的目標是減輕變化所帶來的成本。</li>
+</ul>
+<h2 id="設計原則">設計原則</h2>
+<p>SOLID</p>
+<p>待補...</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JavaScript - 變數作用域、map、filter、 reduce]]></title>
+        <id>https://blog.ydx.tw/post/4b2dfiziG/</id>
+        <link href="https://blog.ydx.tw/post/4b2dfiziG/">
+        </link>
+        <updated>2020-03-25T15:52:30.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="變數作用域">變數作用域</h2>
+<ul>
+<li>全域</li>
+<li>函式內</li>
+</ul>
+<blockquote>
+<p>在函式裡面操作變數，如果函式裡面有定義變數，則拿裡面的變數，如果裡面沒有，會網上找外面的同名變數。</p>
+</blockquote>
+<p>變數作用域提升 hoisting</p>
+<pre><code class="language-javascript=">// you see:
+console.log(x);
+var x = 1;
+// undefined
+
+// it runs
+var x;
+console.log(x);
+x = 1;
+
+// let
+console.log(y);
+let y = 1;
+// ReferenceError: Cannot access 'y' before initialization
+
+
+// function hoisting
+foo()
+
+function foo() {
+  console.log('hohoho');
+}
+// hohoho
+</code></pre>
+<h3 id="把函式指定給變數-匿名函式">把函式指定給變數 -&gt; 匿名函式</h3>
+<pre><code class="language-javascript=">let addTwenty = function(x) {
+  return x + 20
+}
+addTwenty(1)
+
+// 21
+</code></pre>
+<h3 id="匿名函式沒有-name-而且本體不會-hoisting">匿名函式沒有 name 而且本體不會 hoisting</h3>
+<pre><code class="language-javascript=">addTwenty(1)
+
+let addTwenty = function(x) {
+  return x + 20
+}
+
+// addTwenty(1)
+//^
+//ReferenceError: Cannot access 'addTwenty' before initialization
+</code></pre>
+<h3 id="把函式當作集合的值">把函式當作集合的值</h3>
+<pre><code class="language-javascript=">let Math = {
+ abs: function(i) {
+   return i &gt; 0 ? i : -i
+ }
+}
+
+Math.abs(-100);
+
+//
+
+console.log(console.log)
+let p = console.log
+
+//[Function: bound consoleCall]
+//fff
+</code></pre>
+<h2 id="map-filter-reduce">map、filter、reduce</h2>
+<ul>
+<li>map 數量不會變</li>
+<li>filter 回傳 boolean</li>
+</ul>
+<pre><code class="language-javascript=">// map
+
+let result = [1, 2, 3, 4, 5 ,6, 7].map(function (i) { return i * 20})
+console.log(result)
+
+// filter
+let r2 = [1, 2, 3, 4, 5 ,6, 7].filter(function (i) { return i % 2 === 0})
+console.log(r2)
+
+// 可以串下去
+let r3 = [1, 2, 3, 4, 5 ,6, 7].map(function(i) { return i * 5})
+                              .filter(function(i) { return i % 10 === 0})
+                              .map(function(i) { return i + 4})
+console.log(r3);                              
+
+// reduce
+let r4 = [1, 2, 3, 4, 5 ,6, 7].reduce(function(accu, i) {
+  return accu + i
+}, 0)
+console.log(r4)
+</code></pre>
+<pre><code class="language-javascript=">function multiplyFive(i) {
+  return i * 5;
+}
+
+let r3 = [1, 2, 3, 4, 5, 6, 7].map(multiplyFive)
+                              .filter(function(i) { return i % 10 == 0})
+                              .map(function(i) { return i + 4 })
+console.log(r3)
+</code></pre>
+<ul>
+<li>reduce 沒有給起始值，會拿陣列第一個元素當作起始值</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JavaScript - 資料]]></title>
+        <id>https://blog.ydx.tw/post/EpUPHZLAj/</id>
+        <link href="https://blog.ydx.tw/post/EpUPHZLAj/">
+        </link>
+        <updated>2020-03-25T15:39:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="變數">變數</h2>
+<h3 id="變數名稱規則">變數名稱規則</h3>
+<ol>
+<li>變數的第一個字母必須為英文字母、底線_、錢字號$，後面可以是英文字母、底線_、錢字號$以及數字</li>
+<li>變數名稱不可以是 <strong>保留字(Reserved Words)</strong> 與 <strong>關鍵字(keyword)</strong></li>
+</ol>
+<blockquote>
+<p>JavaScript 的語法有區分大小寫，「app」與「App」是不同的變數<br>
+ES6 以前，透過 var 宣告變數，在 ES6 之後，宣告分成變數與常數，除了 var 之外，還可以透過 let 與 const 做宣告。</p>
+</blockquote>
+<ul>
+<li>JavaScript 的型別資訊只在「值」或「物件」本身，變數只用來作為取得值或物件的參考。</li>
+<li>變數沒有用 var 做宣告的時候，會<strong>自動變成全域變數</strong>。</li>
+</ul>
+<pre><code class="language-javascript=">var m = 1;
+var m = 2;
+// 已經被 var 宣告過的變數可以再次宣告
+</code></pre>
+<pre><code class="language-javascript=">let m = 1;
+let m = 2;
+// Uncaught SyntaxError: Identifier 'm' has already been declared
+// console 會跳出錯誤提醒變數 m 已經被宣告過了，不可以再次宣告。
+</code></pre>
+<h3 id="基本型別primitives">基本型別(Primitives)</h3>
+<ol>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol // ES6 新的型別<br>
+除上述的幾種外，其他都可以歸類至物件型別(Object)</li>
+</ol>
+<h3 id="變數宣告">變數宣告</h3>
+<h4 id="區塊變數">區塊變數</h4>
+<pre><code class="language-javascript">let a = 1;
+console.log(a);
+
+var b = 2;
+console.log(b);
+</code></pre>
+<h4 id="常數">常數</h4>
+<pre><code class="language-javascript=">const c = 1;
+console.log(c);
+</code></pre>
+<h3 id="function-函式-裝邏輯的小盒子">function 函式 - 裝邏輯的小盒子</h3>
+<pre><code class="language-javascript=">function greeting(x) {
+  let y = x * 2
+  return y + 3
+}
+
+let z = calc(10)
+console.log(z); // 23
+</code></pre>
+<h3 id="註解">註解</h3>
+<pre><code class="language-javascript=">/*
+  區塊註解
+ */
+ 
+// 單行註解
+</code></pre>
+<pre><code class="language-javascript=">console.log([1, 2, 3, 4, 5]); //[1, 2, 3, 4, 5]
+</code></pre>
+<h3 id="定義一個-foo-函式function">定義一個 foo 函式(function)</h3>
+<p><code>名稱開頭只能: _ 英文 $</code></p>
+<pre><code class="language-javascript=">function foo(){
+  // do something
+  return 1 + 1
+}
+</code></pre>
+<h3 id="呼叫函式">呼叫函式</h3>
+<p><code>foo();</code><br>
+呼叫、調用，英文則會用 call、invoke</p>
+<p><strong><code>return</code> 之後的程式 不會被執行到</strong></p>
+<h3 id="比較東西">比較東西</h3>
+<pre><code class="language-javascript">// ==
+
+console.log(1 == '1') // true
+
+// === 比較東西時建議使用
+console.log([] === 0) // false
+</code></pre>
+<h3 id="nan-not-a-number">NaN not a number</h3>
+<pre><code class="language-javascript=">let z1 = Number.parseInt(&quot;zzzzz&quot;);
+console.log(z1) // NaN
+</code></pre>
+<pre><code class="language-javascript=">let notExist;
+console.log(notExist);
+// undefined
+</code></pre>
+<pre><code class="language-javascript=">// notExist 沒定義時 100 有定義時就是 notExist 的值
+let someVariable = notExist || 100;
+console.log(someVariable);
+
+### 字串串接
+```javascript=
+userName = 'cch'
+let greeting = 'Hello' + userName + 'Nice to meet you'
+</code></pre>
+<p>ES6</p>
+<pre><code class="language-javascript=">let greeting = `Hello ${userName}! Nice to meet you.`
+</code></pre>
+<h3 id="條件分支">條件分支</h3>
+<pre><code class="language-javascript=">if (110 &gt; 100) {
+  console.log(&quot;fffff&quot;);
+}
+
+
+let cartAmount = 30;
+if (cartAmount &gt;= 100) {
+  cartAmount = cartAmount * 0.85;
+} else {
+  cartAmount = cartAmount * 0.9;
+}
+
+console.log(cartAmount); // 27
+
+
+let cartAmount = 30;
+if (cartAmount &gt;= 100) {
+  cartAmount = cartAmount * 0.85;
+} else {
+  cartAmount = cartAmount * 0.9;
+}
+
+console.log(cartAmount); // 27
+</code></pre>
+<pre><code class="language-javascript=">let cartAmount = 30;
+let discount = 1;
+if (cartAmount &gt;= 100) {
+  discount = 0.85;
+} else if(cartAmount &gt; 50) {
+  discount = 0.8;
+} 
+
+// else {
+//   discount = 0.9;
+// }
+cartAmount *= discount;
+
+console.log(cartAmount);
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SQL]]></title>
+        <id>https://blog.ydx.tw/post/n8TgmZf8k/</id>
+        <link href="https://blog.ydx.tw/post/n8TgmZf8k/">
+        </link>
+        <updated>2020-03-25T15:34:34.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="mysql-安裝">MySQL 安裝</h2>
+<ul>
+<li><a href="https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034">MySQL 5.7 安裝</a></li>
+<li><a href="https://actom.me/blog/macos-brew-%E5%AE%89%E8%A3%85-mysql-8-0%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E6%8A%A5%E9%94%99.html">MySQL 8.0 WorkBench 登入錯誤</a></li>
+<li><a href="https://blog.othree.net/log/2018/09/26/homebrew-rollback-mysql-57/">降版</a></li>
+</ul>
+<h3 id="domain-specific-language-dsl">Domain-Specific Language (DSL)</h3>
+<p>某個領域的特定語言</p>
+<h3 id="rdbms-關聯式資料庫">RDBMS 關聯式資料庫</h3>
+<p>可以從 A 資料庫查到 B 資料庫的資料，互相可已關聯起來</p>
+<h2 id="建立資料庫">建立資料庫</h2>
+<pre><code class="language-sql">create database `super_store`;
+</code></pre>
+<h2 id="使用資料庫">使用資料庫</h2>
+<pre><code class="language-sql">use super_store;
+</code></pre>
+<h2 id="刪除資料庫">刪除資料庫</h2>
+<pre><code class="language-sql">drop database `super_store`;
+</code></pre>
+<h2 id="table">table</h2>
+<p>PK = 主鍵<br>
+NN = NotNull 不能為空<br>
+UQ = Uniq 唯一</p>
+<h2 id="追加欄位">追加欄位</h2>
+<pre><code class="language-sql">ALTER TABLE `heroes`
+ADD COLUMN super_power VARCHAR(100);
+</code></pre>
+<h2 id="刪除欄位">刪除欄位</h2>
+<pre><code class="language-sql=">ALTER TABLE `heroes`
+DROP COLUMN super_power;
+</code></pre>
+<h2 id="刪除資料表">刪除資料表</h2>
+<pre><code class="language-sql">DROP TABLE `heroes`
+</code></pre>
+<h2 id="新增資料">新增資料</h2>
+<pre><code class="language-sql">INSERT INTO heroes
+(name, genderm age, hero_level, gero_rank, description) VALUES ()
+</code></pre>
+<h2 id="查詢全部資料">查詢全部資料</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes;
+</code></pre>
+<h2 id="查詢所有-s-級英雄資料">查詢所有 S 級英雄資料</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level = 'S'
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.select(:name, :gender).where(hero_level: 'S', gender: 'F')
+</code></pre>
+<h2 id="null-判斷">NULL 判斷</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age IS NULL;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(age: nil)
+</code></pre>
+<h2 id="like">like</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE name LIKE '%背心%';
+</code></pre>
+<p><code>%</code> 為萬用字元，前面的拿掉就是 背心...開頭</p>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(&quot;name like '%背心%'&quot;)
+</code></pre>
+<h2 id="區間查詢">區間查詢</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age &gt;= 10 and age &lt;= 25;
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age BETWEEN 10 AND 25;
+</code></pre>
+<pre><code class="language-ruby">Hero.where(age: 10..25)
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE age &gt;= 10;
+</code></pre>
+<pre><code class="language-ruby">Hero.where('age &gt;= 10') # 加字串
+</code></pre>
+<h2 id="or">OR</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level = 'S' or hero_level = 'A';
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level IN('S', 'A');
+</code></pre>
+<h2 id="不等於">不等於</h2>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level &lt;&gt; 'S';
+</code></pre>
+<pre><code class="language-sql">SELECT *
+FROM heroes
+WHERE hero_level != 'S';
+</code></pre>
+<h2 id="更新資料-update">更新資料 UPDATE</h2>
+<pre><code class="language-sql">UPDATE heroes
+SET age = 10
+WHERE id = 25
+</code></pre>
+<h2 id="大量更新資料-safe_mode">大量更新資料 Safe_mode</h2>
+<pre><code class="language-sql">UPDATE heroes
+SET age = age + 1;
+-- 會壞掉
+-- Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -&gt; SQL Editor and reconnect.
+</code></pre>
+<pre><code class="language-sql">set sql_safe_updates = 0;
+UPDATE heroes
+SET age = age + 1;
+</code></pre>
+<h2 id="刪除資料庫-2">刪除資料庫</h2>
+<pre><code class="language-sql">set sql_safe_updates = 0;
+
+delete from heroes
+where hero_level = 'C';
+
+select * from heroes;
+</code></pre>
+<h2 id="計算數量-count">計算數量 count</h2>
+<pre><code class="language-sql">select count(*)
+from heroes
+where hero_level = 'A';
+-- 只會顯示 18
+</code></pre>
+<p><code>Hero.where(hero_level: 'A').count</code><br>
+<code>Hero.count(hero_level: 'A')</code></p>
+<h2 id="加總-平均">加總、平均</h2>
+<pre><code class="language-sql">select sum(age)
+from heroes
+where hero_level = 'A' AND age IS NOT NULL;
+</code></pre>
+<pre><code class="language-sql">select avg(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<h2 id="最大-最小">最大 最小</h2>
+<pre><code class="language-sql">select min(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<pre><code class="language-sql">select max(age)
+from heroes
+where hero_level = 'A';
+</code></pre>
+<h2 id="分組-group">分組 GROUP</h2>
+<pre><code class="language-sql">select hero_level as '英雄等級',
+ avg(age) as '平均年齡', min(age), max(age)
+from heroes
+group by hero_level;
+</code></pre>
+<h2 id="剔除重複的資料">剔除重複的資料</h2>
+<pre><code class="language-sql">select distinct danger_level
+ from monsters;
+</code></pre>
+<h2 id="排序">排序</h2>
+<pre><code class="language-sql">-- 反向排序 age 由大到小
+select *
+from heroes
+where hero_level = 'S'
+order by age DESC;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(hero_level: 'S').order('age DESC')
+Hero.where(hero_level: 'S').order(age: :desc)
+</code></pre>
+<h2 id="限制數量">限制數量</h2>
+<pre><code class="language-sql">-- 反向排序 age 由大到小
+select *
+from heroes
+where hero_level = 'S'
+order by age DESC
+LIMIT 3;
+</code></pre>
+<pre><code class="language-ruby"># Rails ORM
+Hero.where(hero_level: 'S').order(age: :desc).limit(3)
+</code></pre>
+<h2 id="交集">交集</h2>
+<pre><code class="language-sql">-- inner join
+SELECT * FROM t1
+join t2
+on t1.username = t2.name
+</code></pre>
+<pre><code class="language-sql">-- left join
+SELECT * FROM t1
+left join t2
+on t1.username = t2.name
+</code></pre>
+<pre><code class="language-sql">-- right join
+SELECT * FROM t1
+right join t2
+on t1.username = t2.name
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mac - 終端機常用快速鍵]]></title>
+        <id>https://blog.ydx.tw/post/ov9TpNk42/</id>
+        <link href="https://blog.ydx.tw/post/ov9TpNk42/">
+        </link>
+        <updated>2020-03-25T15:11:53.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li><code>Control + A</code> 移動到開頭</li>
+<li><code>Control + E</code> 移動到結尾</li>
+<li><code>Control + P</code> 在終端機可叫出上一個執行的指令</li>
+<li><code>Control + N</code> 在終端機可叫出下一個執行的指令</li>
+<li><code>Control + B</code> 往前移動一個字元</li>
+<li><code>Control + F</code> 往後移動一個字元</li>
+<li><code>Control + W</code> 刪除一個單字</li>
+<li><code>Control + U</code> 刪除整行</li>
+<li><code>Control + K</code> 刪除游標後至行尾的所有文字</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ruby - 實體方法及類別方法（存取控制、Module）]]></title>
+        <id>https://blog.ydx.tw/post/SVn7OpyMT/</id>
+        <link href="https://blog.ydx.tw/post/SVn7OpyMT/">
+        </link>
+        <updated>2020-03-25T14:42:39.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>實體變數預設值 <code>nil</code></li>
+<li>區域變數沒有預設值</li>
+<li><code>puts</code> 印不出 <code>nil</code> 會印出空白</li>
+<li><code>p</code> 才能印出 <code>nil</code></li>
+</ol>
+<h2 id="ruby-沒有屬性雖然看起來像是存取屬性但其實是個方法name">Ruby 沒有屬性，雖然看起來像是存取屬性，但其實是個方法<code>name=()</code></h2>
+<pre><code class="language-ruby">def name=(new_name)
+  @name = new_name
+end
+</code></pre>
+<h2 id="展開一個-age-存取的方法">展開一個 age 存取的方法</h2>
+<p>但無法自定義</p>
+<pre><code class="language-ruby">attr_reader :age # getter
+attr_writer :age # setter
+attr_accessor :age # getter + setter
+</code></pre>
+<h2 id="同名方法">同名方法</h2>
+<p>當方法名字相同重新定義，前面同名的方法會被後面的方法蓋掉<br>
+類別同名重新定義，後面定義的不會蓋掉前面的，會互相融合，又稱 Open Class</p>
+<pre><code class="language-ruby=">class Cat
+  def hello
+    puts &quot;hi&quot;
+  end
+end
+
+class Cat
+  def world
+    puts &quot;world&quot;
+  end
+
+  def hello # 會蓋掉前面定義的同名方法
+    puts &quot;hihihi&quot;
+  end
+end
+
+kitty = Cat.new
+kitty.hello
+kitty.world
+</code></pre>
+<h3 id="open-class">Open Class</h3>
+<pre><code class="language-ruby="># Open Class
+class Integer
+  def days
+    &quot;#{self} days&quot;
+  end
+end
+
+puts 3.days
+puts 5.days
+</code></pre>
+<h2 id="alias-保留原有的方法並加入自訂的方法">alias 保留原有的方法，並加入自訂的方法</h2>
+<pre><code class="language-ruby=">class Integer
+  alias :old_plus :+
+  # alias_method(new_name, old_name)
+
+  def +(n)
+    puts &quot;hey hey hey&quot;
+    self.old_plus(n)
+  end
+end
+
+p 1 + 2
+p 3 + 5
+</code></pre>
+<h2 id="存取控制">存取控制</h2>
+<h3 id="封裝-encapsulation">封裝 encapsulation</h3>
+<ol>
+<li>public</li>
+<li>private</li>
+<li>protected</li>
+</ol>
+<p>沒有特別標明的預設是 <code>public</code> 公開的</p>
+<pre><code class="language-ruby=">  def say_hello
+    gossip # Ruby 2.7 後可以 self.gossip
+  end
+
+  # 到 a 方法都是 private
+  private
+  def gossip
+  end
+end
+
+kitty = Cat.new
+kitty.say_hello
+</code></pre>
+<p><strong><code>private</code> 不能有明確的訊息接收者(reciver)，也就是不能有<code>小數點.</code> 前面的物件</strong></p>
+<h3 id="查看物件有哪些-private-方法">查看物件有哪些 private 方法</h3>
+<pre><code class="language-ruby">p Object.private_methods
+</code></pre>
+<p><strong><code>protected</code> 不限定有沒有明確的訊息接收者</strong></p>
+<h2 id="模組-module">模組 Module</h2>
+<pre><code class="language-ruby=">module Flyable
+  def fly
+    puts &quot;Fly!!!&quot;
+  end
+end
+
+class Cat
+  include Flyable
+end
+
+kitty = Cat.new
+kitty.fly
+</code></pre>
+<ol>
+<li>模組不能繼承 Flyable &lt; someModule</li>
+<li>模組不能實體化 Flyable.new</li>
+</ol>
+<p><code>superclass</code> 問類別的上一層模組</p>
+<pre><code class="language-ruby">Class.superclass
+=&gt; Module
+</code></pre>
+<p>查看 Class 有的方法<br>
+p Class.instance_methods<br>
+p Module.instance_methods</p>
+<p>計算方法的數量<br>
+p Class.instance_methods.count<br>
+p Module.instance_methods.count</p>
+<p>陣列相減，查看差異的方法<br>
+p Class.instance_methods - Module.instance_methods</p>
+<p><code>include</code> 引入後，類別就有模組的實體方法<br>
+<code>extend</code> 擴充會把模組的方法變成類別的方法</p>
+<h3 id="namespace">namespace</h3>
+<p>不同 Module 相同 Class 名稱</p>
+<pre><code class="language-ruby=">module A
+  class Cat
+  end
+end
+
+module B
+  class Cat
+  end
+end
+
+kitty = A::Cat.new
+nancy = B::Cat.new
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ruby - Block、Proc]]></title>
+        <id>https://blog.ydx.tw/post/p5TIU7z5n/</id>
+        <link href="https://blog.ydx.tw/post/p5TIU7z5n/">
+        </link>
+        <updated>2020-03-25T14:26:45.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>Block 無法單獨存活，可以跟在方法的後面，例如： <code>5.times { puts &quot;i&quot; }</code></li>
+<li>Block 不是物件</li>
+<li>Block 不是跟在方法後面就可以執行，要宿主同意執行才會跑 Block 內的程式</li>
+<li>可以在宿主加上 <code>yield</code> 把控制權暫時交給 Block 做 Block 內程式，完成後在還回來宿主繼續做以下的程式</li>
+</ol>
+<p><code>yield 123, 456</code> 拋出東西給 Block，Block 用變數接起拋出的東西。</p>
+<pre><code class="language-ruby=">def say_hello
+  yield 123, 456, &quot;ccccc&quot;
+  puts &quot;hi&quot;
+end
+
+say_hello do |x, y|
+  puts &quot;hey #{x} #{y}&quot;
+end
+
+# hey 123 456
+# hi
+</code></pre>
+<blockquote>
+<p>|x| x 為區域變數，離開 Block 就失效了</p>
+</blockquote>
+<h2 id="block-做完最後一行會有回傳值">Block 做完最後一行會有回傳值</h2>
+<pre><code class="language-ruby=">def say_hello
+  result = yield 123
+  puts &quot;hi&quot;
+  puts result
+end
+
+say_hello { |x| x * 2 }
+
+# hi
+# 246
+</code></pre>
+<h2 id="自製-select-map">自製 select、map</h2>
+<pre><code class="language-ruby=">def my_select(list)
+  result = []
+
+  list.each do |i|
+    if yield(i)
+      result &lt;&lt; i
+    end
+  end
+
+  result
+end
+
+def my_map(list)
+  result = []
+
+  list.each do |i|
+    result &lt;&lt; yield(i)
+  end
+
+  result
+end
+
+p my_select([1, 2, 3, 4, 5]) { |x| x.odd? }
+
+p my_map([1, 2, 3]) { |x| x * 2 }
+</code></pre>
+<p><strong>不要在 Block 裡面用 <code>return</code>，Block 並不是一個方法，它不知道你要 Return 到哪裡去而造成錯誤。</strong></p>
+<h2 id="沒有-block-但只有-yield">沒有 Block 但只有 yield</h2>
+<p><code>block_given?</code> 判斷是否有沒有帶 Block</p>
+<pre><code class="language-ruby=">if block_given?
+  ...
+end
+</code></pre>
+<h2 id="查詢-method-的位置">查詢 method 的位置</h2>
+<p><code>p method(:task).source_location</code></p>
+<p>p list.map { |x| x * 2 }<br>
+p(list.map { |x| x * 2 })</p>
+<p>p list.map do |x| x * 2 end # 會壞<br>
+p(list.map) do |x| x * 2 end<br>
+<strong>Block 不是物件，不能單獨存在</strong></p>
+<h2 id="proc">Proc</h2>
+<p>Proc 後的物件可以當作參數傳遞</p>
+<pre><code class="language-ruby="># Proc.new { |x| x + 2 }
+add_two = Proc.new { |x| x + 2 }
+
+p add_two.call(2)
+p add_two.call(3)
+
+def hello(adder)
+  adder.call(3)
+end
+
+p hello(add_two)
+</code></pre>
+<h3 id="呼叫-proc-方法">呼叫 Proc 方法</h3>
+<ol>
+<li>p add_two.call(3)</li>
+<li>p add_two[3]</li>
+<li>p add_two.(3)</li>
+<li>p add_two.===(3) # case_when 做比較時候</li>
+<li>add_two.yield</li>
+</ol>
+<h2 id="lambda">lambda</h2>
+<pre><code class="language-ruby=">add_two = lambda { |n| n + 2 }
+add_two = -&gt; (n) { n + 2 }
+</code></pre>
+<ol>
+<li>p add_two.call(3)</li>
+<li>p add_two[3]</li>
+<li>p add_two.(3)</li>
+<li>p add_two.===(3)</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ruby - Class]]></title>
+        <id>https://blog.ydx.tw/post/NEU1M2rEY/</id>
+        <link href="https://blog.ydx.tw/post/NEU1M2rEY/">
+        </link>
+        <updated>2020-03-25T14:19:24.000Z</updated>
+        <content type="html"><![CDATA[<p>物件 = 狀態(名詞) ＋ 行為(動詞)</p>
+<p>OOP 為了讓程式碼更能容易理解，擬人化</p>
+<h2 id="類別-與-實體">類別 與 實體</h2>
+<h3 id="建立-class">建立 class</h3>
+<pre><code class="language-ruby=">class Cat
+  def eat(food)
+    puts &quot;#{food} is good&quot;
+  end
+end
+
+kitty = Cat.new
+kitty.eat('banana')
+</code></pre>
+<blockquote>
+<p>類別命名時 必須是常數</p>
+</blockquote>
+<h2 id="繼承">繼承</h2>
+<p>把共同特徵放在同一個 class 裡面</p>
+<pre><code class="language-ruby=">class Animal
+  def walk(animal)
+    puts &quot;#{animal} walk.&quot;
+  end
+
+  def eat(animal)
+    puts &quot;#{animal} eat.&quot;
+  end
+end
+
+class Dog &lt; Animal
+end
+
+class Cat &lt; Animal
+end
+
+dog1 = Dog.new
+cat1 = Cat.new
+
+dog1.walk &quot;123&quot;
+cat1.walk &quot;123123&quot;
+
+dog1.eat &quot;123&quot;
+cat1.eat &quot;123123&quot;
+</code></pre>
+<h2 id="初始化-initialize">初始化 initialize</h2>
+<pre><code class="language-ruby=">class Cat
+  def initialize(name)
+    puts &quot;hi #{name}&quot;
+  end
+end
+
+cch = Cat.new('cch') # new 後面的引數是 initialize 的參數
+</code></pre>
+<h3 id="沒有寫-initialize">沒有寫 initialize</h3>
+<p>當 Cat 沒有寫繼承其他，會自動繼承自 Object，Object 的 initialize 沒有參數，所以會出現參數數量錯誤</p>
+<pre><code class="language-ruby=">class Object
+  def initialize
+  end
+end
+
+class Cat &lt; Object
+end
+
+cch = Cat.new('cch', 32)
+</code></pre>
+<h3 id="實體變數">實體變數</h3>
+<pre><code class="language-ruby=">class Cat
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def greeting
+    puts &quot;I am #{@name}, age: #{@age}&quot;
+  end
+end
+
+kitty = Cat.new('kitty', 32)
+
+kitty.greeting
+</code></pre>
+<h2 id="new-跟-initialize">new 跟 initialize</h2>
+<p>new 後面的引數，在 new 後，會帶入 initialize 的參數</p>
+<p>實體方法 = 作用在實體上的方法<br>
+類別方法 = 做用在類別上的方法，方法名稱前面加 self</p>
+<pre><code class="language-ruby=">class Cat
+  def self.all
+    puts &quot;全部的貓兒&quot;
+  end
+end
+
+Cat.all
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mac 設定值]]></title>
+        <id>https://blog.ydx.tw/post/EIqTeLHGf/</id>
+        <link href="https://blog.ydx.tw/post/EIqTeLHGf/">
+        </link>
+        <updated>2020-03-25T03:02:44.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://blog.ydx.tw/post-images/1585105461173.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105469943.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105475776.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105481131.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105486167.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105493407.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105509867.png" alt="" loading="lazy"><br>
+<img src="https://blog.ydx.tw/post-images/1585105519540.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mac - Defaults]]></title>
+        <id>https://blog.ydx.tw/post/SMKjGxZSW/</id>
+        <link href="https://blog.ydx.tw/post/SMKjGxZSW/">
+        </link>
+        <updated>2020-03-24T23:27:17.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="鍵盤按鍵按住時重複輸入">鍵盤按鍵按住時重複輸入</h2>
+<pre><code class="language-bash"># Enable Key Repeat
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Disable Key Repeat
+defaults write -g ApplePressAndHoldEnabled -bool true
+</code></pre>
+<h2 id="加速鍵盤按鍵重複輸入速度">加速鍵盤按鍵重複輸入速度</h2>
+<pre><code class="language-bash">defaults write NSGlobalDomain KeyRepeat -int 1
+</code></pre>
+]]></content>
+    </entry>
+</feed>

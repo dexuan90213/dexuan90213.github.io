@@ -1,0 +1,318 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JavaScript - 資料 | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="JavaScript - 資料 | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="變數
+變數名稱規則
+
+變數的第一個字母必須為英文字母、底線_、錢字號$，後面可以是英文字母、底線_、錢字號$以及數字
+變數名稱不可以是 保留字(Reserved Words) 與 關鍵字(keyword)
+
+
+JavaScript 的語法有..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              JavaScript - 資料
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="變數">變數</h2>
+<h3 id="變數名稱規則">變數名稱規則</h3>
+<ol>
+<li>變數的第一個字母必須為英文字母、底線_、錢字號$，後面可以是英文字母、底線_、錢字號$以及數字</li>
+<li>變數名稱不可以是 <strong>保留字(Reserved Words)</strong> 與 <strong>關鍵字(keyword)</strong></li>
+</ol>
+<blockquote>
+<p>JavaScript 的語法有區分大小寫，「app」與「App」是不同的變數<br>
+ES6 以前，透過 var 宣告變數，在 ES6 之後，宣告分成變數與常數，除了 var 之外，還可以透過 let 與 const 做宣告。</p>
+</blockquote>
+<ul>
+<li>JavaScript 的型別資訊只在「值」或「物件」本身，變數只用來作為取得值或物件的參考。</li>
+<li>變數沒有用 var 做宣告的時候，會<strong>自動變成全域變數</strong>。</li>
+</ul>
+<pre><code class="language-javascript=">var m = 1;
+var m = 2;
+// 已經被 var 宣告過的變數可以再次宣告
+</code></pre>
+<pre><code class="language-javascript=">let m = 1;
+let m = 2;
+// Uncaught SyntaxError: Identifier 'm' has already been declared
+// console 會跳出錯誤提醒變數 m 已經被宣告過了，不可以再次宣告。
+</code></pre>
+<h3 id="基本型別primitives">基本型別(Primitives)</h3>
+<ol>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol // ES6 新的型別<br>
+除上述的幾種外，其他都可以歸類至物件型別(Object)</li>
+</ol>
+<h3 id="變數宣告">變數宣告</h3>
+<h4 id="區塊變數">區塊變數</h4>
+<pre><code class="language-javascript">let a = 1;
+console.log(a);
+
+var b = 2;
+console.log(b);
+</code></pre>
+<h4 id="常數">常數</h4>
+<pre><code class="language-javascript=">const c = 1;
+console.log(c);
+</code></pre>
+<h3 id="function-函式-裝邏輯的小盒子">function 函式 - 裝邏輯的小盒子</h3>
+<pre><code class="language-javascript=">function greeting(x) {
+  let y = x * 2
+  return y + 3
+}
+
+let z = calc(10)
+console.log(z); // 23
+</code></pre>
+<h3 id="註解">註解</h3>
+<pre><code class="language-javascript=">/*
+  區塊註解
+ */
+ 
+// 單行註解
+</code></pre>
+<pre><code class="language-javascript=">console.log([1, 2, 3, 4, 5]); //[1, 2, 3, 4, 5]
+</code></pre>
+<h3 id="定義一個-foo-函式function">定義一個 foo 函式(function)</h3>
+<p><code>名稱開頭只能: _ 英文 $</code></p>
+<pre><code class="language-javascript=">function foo(){
+  // do something
+  return 1 + 1
+}
+</code></pre>
+<h3 id="呼叫函式">呼叫函式</h3>
+<p><code>foo();</code><br>
+呼叫、調用，英文則會用 call、invoke</p>
+<p><strong><code>return</code> 之後的程式 不會被執行到</strong></p>
+<h3 id="比較東西">比較東西</h3>
+<pre><code class="language-javascript">// ==
+
+console.log(1 == '1') // true
+
+// === 比較東西時建議使用
+console.log([] === 0) // false
+</code></pre>
+<h3 id="nan-not-a-number">NaN not a number</h3>
+<pre><code class="language-javascript=">let z1 = Number.parseInt(&quot;zzzzz&quot;);
+console.log(z1) // NaN
+</code></pre>
+<pre><code class="language-javascript=">let notExist;
+console.log(notExist);
+// undefined
+</code></pre>
+<pre><code class="language-javascript=">// notExist 沒定義時 100 有定義時就是 notExist 的值
+let someVariable = notExist || 100;
+console.log(someVariable);
+
+### 字串串接
+```javascript=
+userName = 'cch'
+let greeting = 'Hello' + userName + 'Nice to meet you'
+</code></pre>
+<p>ES6</p>
+<pre><code class="language-javascript=">let greeting = `Hello ${userName}! Nice to meet you.`
+</code></pre>
+<h3 id="條件分支">條件分支</h3>
+<pre><code class="language-javascript=">if (110 &gt; 100) {
+  console.log(&quot;fffff&quot;);
+}
+
+
+let cartAmount = 30;
+if (cartAmount &gt;= 100) {
+  cartAmount = cartAmount * 0.85;
+} else {
+  cartAmount = cartAmount * 0.9;
+}
+
+console.log(cartAmount); // 27
+
+
+let cartAmount = 30;
+if (cartAmount &gt;= 100) {
+  cartAmount = cartAmount * 0.85;
+} else {
+  cartAmount = cartAmount * 0.9;
+}
+
+console.log(cartAmount); // 27
+</code></pre>
+<pre><code class="language-javascript=">let cartAmount = 30;
+let discount = 1;
+if (cartAmount &gt;= 100) {
+  discount = 0.85;
+} else if(cartAmount &gt; 50) {
+  discount = 0.8;
+} 
+
+// else {
+//   discount = 0.9;
+// }
+cartAmount *= discount;
+
+console.log(cartAmount);
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%AE%8A%E6%95%B8">變數</a>
+<ul>
+<li><a href="#%E8%AE%8A%E6%95%B8%E5%90%8D%E7%A8%B1%E8%A6%8F%E5%89%87">變數名稱規則</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%9E%8B%E5%88%A5primitives">基本型別(Primitives)</a></li>
+<li><a href="#%E8%AE%8A%E6%95%B8%E5%AE%A3%E5%91%8A">變數宣告</a>
+<ul>
+<li><a href="#%E5%8D%80%E5%A1%8A%E8%AE%8A%E6%95%B8">區塊變數</a></li>
+<li><a href="#%E5%B8%B8%E6%95%B8">常數</a></li>
+</ul>
+</li>
+<li><a href="#function-%E5%87%BD%E5%BC%8F-%E8%A3%9D%E9%82%8F%E8%BC%AF%E7%9A%84%E5%B0%8F%E7%9B%92%E5%AD%90">function 函式 - 裝邏輯的小盒子</a></li>
+<li><a href="#%E8%A8%BB%E8%A7%A3">註解</a></li>
+<li><a href="#%E5%AE%9A%E7%BE%A9%E4%B8%80%E5%80%8B-foo-%E5%87%BD%E5%BC%8Ffunction">定義一個 foo 函式(function)</a></li>
+<li><a href="#%E5%91%BC%E5%8F%AB%E5%87%BD%E5%BC%8F">呼叫函式</a></li>
+<li><a href="#%E6%AF%94%E8%BC%83%E6%9D%B1%E8%A5%BF">比較東西</a></li>
+<li><a href="#nan-not-a-number">NaN not a number</a></li>
+<li><a href="#%E6%A2%9D%E4%BB%B6%E5%88%86%E6%94%AF">條件分支</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/n8TgmZf8k/">
+              <h3 class="post-title">
+                SQL
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

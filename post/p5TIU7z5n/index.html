@@ -1,0 +1,275 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ruby - Block、Proc | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ruby - Block、Proc | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+Block 無法單獨存活，可以跟在方法的後面，例如： 5.times { puts &quot;i&quot; }
+Block 不是物件
+Block 不是跟在方法後面就可以執行，要宿主同意執行才會跑 Block 內的程式
+可以在宿主加上 ..." />
+    <meta name="keywords" content="Ruby" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Ruby - Block、Proc
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://blog.ydx.tw/tag/n-X-2DAVZ/" class="post-tag">
+                  # Ruby
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <ol>
+<li>Block 無法單獨存活，可以跟在方法的後面，例如： <code>5.times { puts &quot;i&quot; }</code></li>
+<li>Block 不是物件</li>
+<li>Block 不是跟在方法後面就可以執行，要宿主同意執行才會跑 Block 內的程式</li>
+<li>可以在宿主加上 <code>yield</code> 把控制權暫時交給 Block 做 Block 內程式，完成後在還回來宿主繼續做以下的程式</li>
+</ol>
+<p><code>yield 123, 456</code> 拋出東西給 Block，Block 用變數接起拋出的東西。</p>
+<pre><code class="language-ruby=">def say_hello
+  yield 123, 456, &quot;ccccc&quot;
+  puts &quot;hi&quot;
+end
+
+say_hello do |x, y|
+  puts &quot;hey #{x} #{y}&quot;
+end
+
+# hey 123 456
+# hi
+</code></pre>
+<blockquote>
+<p>|x| x 為區域變數，離開 Block 就失效了</p>
+</blockquote>
+<h2 id="block-做完最後一行會有回傳值">Block 做完最後一行會有回傳值</h2>
+<pre><code class="language-ruby=">def say_hello
+  result = yield 123
+  puts &quot;hi&quot;
+  puts result
+end
+
+say_hello { |x| x * 2 }
+
+# hi
+# 246
+</code></pre>
+<h2 id="自製-select-map">自製 select、map</h2>
+<pre><code class="language-ruby=">def my_select(list)
+  result = []
+
+  list.each do |i|
+    if yield(i)
+      result &lt;&lt; i
+    end
+  end
+
+  result
+end
+
+def my_map(list)
+  result = []
+
+  list.each do |i|
+    result &lt;&lt; yield(i)
+  end
+
+  result
+end
+
+p my_select([1, 2, 3, 4, 5]) { |x| x.odd? }
+
+p my_map([1, 2, 3]) { |x| x * 2 }
+</code></pre>
+<p><strong>不要在 Block 裡面用 <code>return</code>，Block 並不是一個方法，它不知道你要 Return 到哪裡去而造成錯誤。</strong></p>
+<h2 id="沒有-block-但只有-yield">沒有 Block 但只有 yield</h2>
+<p><code>block_given?</code> 判斷是否有沒有帶 Block</p>
+<pre><code class="language-ruby=">if block_given?
+  ...
+end
+</code></pre>
+<h2 id="查詢-method-的位置">查詢 method 的位置</h2>
+<p><code>p method(:task).source_location</code></p>
+<p>p list.map { |x| x * 2 }<br>
+p(list.map { |x| x * 2 })</p>
+<p>p list.map do |x| x * 2 end # 會壞<br>
+p(list.map) do |x| x * 2 end<br>
+<strong>Block 不是物件，不能單獨存在</strong></p>
+<h2 id="proc">Proc</h2>
+<p>Proc 後的物件可以當作參數傳遞</p>
+<pre><code class="language-ruby="># Proc.new { |x| x + 2 }
+add_two = Proc.new { |x| x + 2 }
+
+p add_two.call(2)
+p add_two.call(3)
+
+def hello(adder)
+  adder.call(3)
+end
+
+p hello(add_two)
+</code></pre>
+<h3 id="呼叫-proc-方法">呼叫 Proc 方法</h3>
+<ol>
+<li>p add_two.call(3)</li>
+<li>p add_two[3]</li>
+<li>p add_two.(3)</li>
+<li>p add_two.===(3) # case_when 做比較時候</li>
+<li>add_two.yield</li>
+</ol>
+<h2 id="lambda">lambda</h2>
+<pre><code class="language-ruby=">add_two = lambda { |n| n + 2 }
+add_two = -&gt; (n) { n + 2 }
+</code></pre>
+<ol>
+<li>p add_two.call(3)</li>
+<li>p add_two[3]</li>
+<li>p add_two.(3)</li>
+<li>p add_two.===(3)</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#block-%E5%81%9A%E5%AE%8C%E6%9C%80%E5%BE%8C%E4%B8%80%E8%A1%8C%E6%9C%83%E6%9C%89%E5%9B%9E%E5%82%B3%E5%80%BC">Block 做完最後一行會有回傳值</a></li>
+<li><a href="#%E8%87%AA%E8%A3%BD-select-map">自製 select、map</a></li>
+<li><a href="#%E6%B2%92%E6%9C%89-block-%E4%BD%86%E5%8F%AA%E6%9C%89-yield">沒有 Block 但只有 yield</a></li>
+<li><a href="#%E6%9F%A5%E8%A9%A2-method-%E7%9A%84%E4%BD%8D%E7%BD%AE">查詢 method 的位置</a></li>
+<li><a href="#proc">Proc</a>
+<ul>
+<li><a href="#%E5%91%BC%E5%8F%AB-proc-%E6%96%B9%E6%B3%95">呼叫 Proc 方法</a></li>
+</ul>
+</li>
+<li><a href="#lambda">lambda</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/NEU1M2rEY/">
+              <h3 class="post-title">
+                Ruby - Class
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

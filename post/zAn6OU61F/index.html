@@ -1,0 +1,277 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTML - Flex | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="HTML - Flex | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="flex
+主軸：main-axis
+次軸：cross-axis
+父層設定 flex
+
+
+當父層設定成 display: flex 後，此層就會變成 flex-item 物件
+
+
+flex-item：具有彈性的空間
+
+
+子層預設會是橫向排列
+..." />
+    <meta name="keywords" content="Flex,HTML,CSS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              HTML - Flex
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://blog.ydx.tw/tag/DN_8mBJ-Y/" class="post-tag">
+                  # Flex
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/dfDeFYLbJ/" class="post-tag">
+                  # HTML
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/cpn9BK7EZd/" class="post-tag">
+                  # CSS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="flex">flex</h2>
+<p>主軸：main-axis<br>
+次軸：cross-axis</p>
+<h3 id="父層設定-flex">父層設定 flex</h3>
+<ul>
+<li>
+<p>當父層設定成 <code>display: flex</code> 後，此層就會變成 <strong>flex-item</strong> 物件</p>
+</li>
+<li>
+<p><strong>flex-item</strong>：具有彈性的空間</p>
+</li>
+<li>
+<p>子層預設會是橫向排列</p>
+</li>
+<li>
+<p>資料預設排列，由上至下 由左至右</p>
+</li>
+</ul>
+<h4 id="justify-content對齊與分佈">justify-content（對齊與分佈）</h4>
+<ol>
+<li>flex-start 對齊資料流主軸起點</li>
+<li>flex-end 對齊資料流主軸終點</li>
+<li>center 對齊資料流主軸中間</li>
+<li>space-around 將剩餘空間分配至每一個物件的左右兩側</li>
+<li>space-between 將剩餘空間分配至物件跟物件之間</li>
+<li>space-evenly 將剩餘空間分配至每一個物件左右，任兩個物件之間距離以及物件到邊緣的距離相等</li>
+</ol>
+<h4 id="flex-wrap換列">flex-wrap（換列）</h4>
+<ol>
+<li>nowrap 不換列（預設值）</li>
+<li>wrap 換列</li>
+<li>wrap-reverse 換行反向 (換行的方向 也就是次軸的方向)</li>
+</ol>
+<h4 id="flex-direction主軸方向">flex-direction（主軸方向）</h4>
+<ol>
+<li>row 資料流由左至右（預設值）</li>
+<li>row-reverse 資料流由右至左</li>
+<li>column 直向 資料流由上而下</li>
+<li>column-reverse 直向 資料流由下而上</li>
+</ol>
+<blockquote>
+<p>小提示：<code>flex-direction</code> <code>flex-wrap</code> 可以簡寫成 <code>flex-flow: row wrap;</code></p>
+</blockquote>
+<h4 id="align-items">align-items</h4>
+<p>控制彈性列裡面的項目要對齊該列的起點、終點、中間</p>
+<p>在設定 flex 後，且有設定 wrap 則會自動分割成多個列，如果是直像的話，則會有多個欄（具有彈性的列）</p>
+<ol>
+<li>stretch (預設): 填滿整個容器 (min-width/max-width 不會被蓋掉)</li>
+<li>flex-start 對齊容器內次軸的起點</li>
+<li>flex-end 對齊容器內次軸的終點</li>
+<li>center 對齊次軸的中間</li>
+<li>baseline 容器內元素之間互相對齊基線</li>
+</ol>
+<h4 id="align-self">align-self</h4>
+<p>單獨控制彈性列裡面的物件的對齊<br>
+屬性同 align-items</p>
+<h4 id="align-content">align-content</h4>
+<p>當有換列的情狀時，且次軸有剩餘的空間，設定彈性列（欄）的對齊與分配方式，不適用於只有單行的 flex-item。</p>
+<ol>
+<li>flex-start 容器對齊次軸的起點</li>
+<li>flex-end 容器對齊次軸的終點</li>
+<li>center 容器對齊次軸的中間</li>
+<li>space-between 將剩餘空間分配至容器與容器之間</li>
+<li>space-around 將剩餘空間分配至容器的兩旁</li>
+<li>space-evenly 將剩餘空間分配至容器之間，但容器與容器以及容器至邊緣的距離相等</li>
+<li>stretch（預設值）拉伸容器佔滿剩餘的空間</li>
+</ol>
+<h3 id="子層設定">子層設定</h3>
+<h4 id="flex-grow">flex-grow</h4>
+<p>延展，將剩餘空間分配幾份給設定的物件</p>
+<h4 id="flex-shrink">flex-shrink</h4>
+<p>收縮，將超過父層的空間，除以要收縮幾份後，將設定的物件扣除要收縮的份數</p>
+<h4 id="flex-basis">flex-basis</h4>
+<p>設定物件為主軸的長度，橫向時為寬，直向時為高度<br>
+此設定會蓋掉 width（橫向） 或 height（直向）</p>
+<blockquote>
+<p>上述可簡寫成：</p>
+<pre><code class="language-html">flex: none | [ &lt;'flex-grow'&gt; &lt;'flex-shrink'&gt;? || &lt;'flex-basis'&gt; ]
+</code></pre>
+<p>The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto.</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#flex">flex</a>
+<ul>
+<li><a href="#%E7%88%B6%E5%B1%A4%E8%A8%AD%E5%AE%9A-flex">父層設定 flex</a>
+<ul>
+<li><a href="#justify-content%E5%B0%8D%E9%BD%8A%E8%88%87%E5%88%86%E4%BD%88">justify-content（對齊與分佈）</a></li>
+<li><a href="#flex-wrap%E6%8F%9B%E5%88%97">flex-wrap（換列）</a></li>
+<li><a href="#flex-direction%E4%B8%BB%E8%BB%B8%E6%96%B9%E5%90%91">flex-direction（主軸方向）</a></li>
+<li><a href="#align-items">align-items</a></li>
+<li><a href="#align-self">align-self</a></li>
+<li><a href="#align-content">align-content</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%90%E5%B1%A4%E8%A8%AD%E5%AE%9A">子層設定</a>
+<ul>
+<li><a href="#flex-grow">flex-grow</a></li>
+<li><a href="#flex-shrink">flex-shrink</a></li>
+<li><a href="#flex-basis">flex-basis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/4pa8Ugrk-/">
+              <h3 class="post-title">
+                HTML - inline、block、inline-block 比較
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

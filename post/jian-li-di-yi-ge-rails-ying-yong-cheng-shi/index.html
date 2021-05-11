@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>建立第一個 Rails 應用程式 | YDX</title>
+<link rel="shortcut icon" href="https://dexuan90213.github.io/favicon.ico?v=1585080335028">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://dexuan90213.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="建立第一個 Rails 應用程式 | YDX - Atom Feed" href="https://dexuan90213.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="建立 Rails 專案
+$ rails new hello_rails
+
+
+將使用目前所安裝最新（目前所安裝的是 6.0.1）的 Rails 產生一個名為 hello_rails 的專案
+
+進入專案目錄
+$ cd hello_rails
+
+..." />
+    <meta name="keywords" content="Rails,Ruby,Ruby on Rails" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://dexuan90213.github.io">
+  <img class="avatar" src="https://dexuan90213.github.io/images/avatar.png?v=1585080335028" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              建立第一個 Rails 應用程式
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://dexuan90213.github.io/tag/PPX45SgkG/" class="post-tag">
+                  # Rails
+                </a>
+              
+                <a href="https://dexuan90213.github.io/tag/n-X-2DAVZ/" class="post-tag">
+                  # Ruby
+                </a>
+              
+                <a href="https://dexuan90213.github.io/tag/spF98fOWq/" class="post-tag">
+                  # Ruby on Rails
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="建立-rails-專案">建立 Rails 專案</h2>
+<pre><code class="language-bash">$ rails new hello_rails
+</code></pre>
+<blockquote>
+<p>將使用目前所安裝最新（目前所安裝的是 6.0.1）的 Rails 產生一個名為 <code>hello_rails</code> 的專案</p>
+</blockquote>
+<h2 id="進入專案目錄">進入專案目錄</h2>
+<pre><code class="language-bash">$ cd hello_rails
+</code></pre>
+<h2 id="啟動-rails-server">啟動 rails server</h2>
+<pre><code class="language-bash">$ rails server
+</code></pre>
+<p>或簡寫成</p>
+<pre><code class="language-bash">$ rails s
+</code></pre>
+<h2 id="查看首頁">查看首頁</h2>
+<p>瀏覽器打開 <a href="http://localhost:3000">http://localhost:3000</a><br>
+看到歡呼畫面表示成功執行應用程式<br>
+<img src="https://dexuan90213.github.io/post-images/1585079850828.png" alt="" loading="lazy"></p>
+<h2 id="產生特定版本的-rails-版本的專案">產生特定版本的 Rails 版本的專案</h2>
+<pre><code class="language-bash">$ rails _5.2.3_ new project
+</code></pre>
+<blockquote>
+<p>javascript 資料夾不是只能放 js 檔案，可放前端的檔案 webpacker<br>
+adapter: 轉接器，對轉接頭撈資料，轉接頭幫忙跟資料庫溝通撈資料<br>
+資料庫分成三個，因不同環境 有不同的資料，test 不應該影響到 production 資料庫</p>
+</blockquote>
+<h2 id="bundler-gemfile-套件打包器">bundler -&gt; Gemfile 套件打包器</h2>
+<pre><code class="language-bash">bundle install -&gt; 產生 Gemfile.lock
+</code></pre>
+<h2 id="gemfile">Gemfile</h2>
+<p><code>~&gt;</code> 安裝 約在 6.0.1 的版本 6.0.2 6.0.3 不會安裝 6.1.0</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%BB%BA%E7%AB%8B-rails-%E5%B0%88%E6%A1%88">建立 Rails 專案</a></li>
+<li><a href="#%E9%80%B2%E5%85%A5%E5%B0%88%E6%A1%88%E7%9B%AE%E9%8C%84">進入專案目錄</a></li>
+<li><a href="#%E5%95%9F%E5%8B%95-rails-server">啟動 rails server</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E9%A6%96%E9%A0%81">查看首頁</a></li>
+<li><a href="#%E7%94%A2%E7%94%9F%E7%89%B9%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84-rails-%E7%89%88%E6%9C%AC%E7%9A%84%E5%B0%88%E6%A1%88">產生特定版本的 Rails 版本的專案</a></li>
+<li><a href="#bundler-gemfile-%E5%A5%97%E4%BB%B6%E6%89%93%E5%8C%85%E5%99%A8">bundler -&gt; Gemfile 套件打包器</a></li>
+<li><a href="#gemfile">Gemfile</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://dexuan90213.github.io/post/an-zhuang-ruby-ji-ruby-on-rails/">
+              <h3 class="post-title">
+                安裝 Ruby 及 Ruby on Rails
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://dexuan90213.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

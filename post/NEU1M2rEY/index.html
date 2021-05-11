@@ -1,0 +1,265 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ruby - Class | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ruby - Class | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="物件 = 狀態(名詞) ＋ 行為(動詞)
+OOP 為了讓程式碼更能容易理解，擬人化
+類別 與 實體
+建立 class
+class Cat
+  def eat(food)
+    puts &quot;#{food} is good&quot..." />
+    <meta name="keywords" content="Ruby" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Ruby - Class
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://blog.ydx.tw/tag/n-X-2DAVZ/" class="post-tag">
+                  # Ruby
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>物件 = 狀態(名詞) ＋ 行為(動詞)</p>
+<p>OOP 為了讓程式碼更能容易理解，擬人化</p>
+<h2 id="類別-與-實體">類別 與 實體</h2>
+<h3 id="建立-class">建立 class</h3>
+<pre><code class="language-ruby=">class Cat
+  def eat(food)
+    puts &quot;#{food} is good&quot;
+  end
+end
+
+kitty = Cat.new
+kitty.eat('banana')
+</code></pre>
+<blockquote>
+<p>類別命名時 必須是常數</p>
+</blockquote>
+<h2 id="繼承">繼承</h2>
+<p>把共同特徵放在同一個 class 裡面</p>
+<pre><code class="language-ruby=">class Animal
+  def walk(animal)
+    puts &quot;#{animal} walk.&quot;
+  end
+
+  def eat(animal)
+    puts &quot;#{animal} eat.&quot;
+  end
+end
+
+class Dog &lt; Animal
+end
+
+class Cat &lt; Animal
+end
+
+dog1 = Dog.new
+cat1 = Cat.new
+
+dog1.walk &quot;123&quot;
+cat1.walk &quot;123123&quot;
+
+dog1.eat &quot;123&quot;
+cat1.eat &quot;123123&quot;
+</code></pre>
+<h2 id="初始化-initialize">初始化 initialize</h2>
+<pre><code class="language-ruby=">class Cat
+  def initialize(name)
+    puts &quot;hi #{name}&quot;
+  end
+end
+
+cch = Cat.new('cch') # new 後面的引數是 initialize 的參數
+</code></pre>
+<h3 id="沒有寫-initialize">沒有寫 initialize</h3>
+<p>當 Cat 沒有寫繼承其他，會自動繼承自 Object，Object 的 initialize 沒有參數，所以會出現參數數量錯誤</p>
+<pre><code class="language-ruby=">class Object
+  def initialize
+  end
+end
+
+class Cat &lt; Object
+end
+
+cch = Cat.new('cch', 32)
+</code></pre>
+<h3 id="實體變數">實體變數</h3>
+<pre><code class="language-ruby=">class Cat
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def greeting
+    puts &quot;I am #{@name}, age: #{@age}&quot;
+  end
+end
+
+kitty = Cat.new('kitty', 32)
+
+kitty.greeting
+</code></pre>
+<h2 id="new-跟-initialize">new 跟 initialize</h2>
+<p>new 後面的引數，在 new 後，會帶入 initialize 的參數</p>
+<p>實體方法 = 作用在實體上的方法<br>
+類別方法 = 做用在類別上的方法，方法名稱前面加 self</p>
+<pre><code class="language-ruby=">class Cat
+  def self.all
+    puts &quot;全部的貓兒&quot;
+  end
+end
+
+Cat.all
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A1%9E%E5%88%A5-%E8%88%87-%E5%AF%A6%E9%AB%94">類別 與 實體</a>
+<ul>
+<li><a href="#%E5%BB%BA%E7%AB%8B-class">建立 class</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B9%BC%E6%89%BF">繼承</a></li>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96-initialize">初始化 initialize</a>
+<ul>
+<li><a href="#%E6%B2%92%E6%9C%89%E5%AF%AB-initialize">沒有寫 initialize</a></li>
+<li><a href="#%E5%AF%A6%E9%AB%94%E8%AE%8A%E6%95%B8">實體變數</a></li>
+</ul>
+</li>
+<li><a href="#new-%E8%B7%9F-initialize">new 跟 initialize</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/EIqTeLHGf/">
+              <h3 class="post-title">
+                Mac 設定值
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTML - inline、block、inline-block 比較 | YDX</title>
+<link rel="shortcut icon" href="https://blog.ydx.tw/favicon.ico?v=1585153005229">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.ydx.tw/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="HTML - inline、block、inline-block 比較 | YDX - Atom Feed" href="https://blog.ydx.tw/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="inline、block、inline-block 比較表
+O 表示支援，Ｘ 表示不支援
+
+
+
+
+inline
+block
+inline-block
+
+
+
+
+width
+X
+O
+O
+
+
+height
+X
+O
+O
+
+
+margin 水平軸
+O..." />
+    <meta name="keywords" content="HTML,HTML5,CSS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.ydx.tw">
+  <img class="avatar" src="https://blog.ydx.tw/images/avatar.png?v=1585153005229" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    me@ydx.tw
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/dexuan90213" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              HTML - inline、block、inline-block 比較
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://blog.ydx.tw/tag/dfDeFYLbJ/" class="post-tag">
+                  # HTML
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/iP6zbBL14G/" class="post-tag">
+                  # HTML5
+                </a>
+              
+                <a href="https://blog.ydx.tw/tag/cpn9BK7EZd/" class="post-tag">
+                  # CSS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="inline-block-inline-block-比較表">inline、block、inline-block 比較表</h2>
+<h3 id="o-表示支援x-表示不支援">O 表示支援，Ｘ 表示不支援</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">inline</th>
+<th style="text-align:center">block</th>
+<th style="text-align:center">inline-block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>height</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>margin 水平軸</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>margin 垂直軸</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>padding 水平軸</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>padding 垂直軸</td>
+<td style="text-align:center">X <code>註1</code></td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td>預設排列方向</td>
+<td style="text-align:center">橫向</td>
+<td style="text-align:center">直向</td>
+<td style="text-align:center">橫向</td>
+</tr>
+<tr>
+<td>對空白字元的處理方式</td>
+<td style="text-align:center">保留</td>
+<td style="text-align:center">無效</td>
+<td style="text-align:center">保留</td>
+</tr>
+<tr>
+<td>vertical-align 預設對齊方式</td>
+<td style="text-align:center">基線 baseline</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">基線 baseline</td>
+</tr>
+<tr>
+<td>套用父層的 text-align</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>註1： <code>inline-padding</code> 視覺上支援，但空間的佔據是<span style="color: red"><strong>不支援</strong></span>的。<br>
+也就是說，視覺上有變化，但佔據的空間沒有變大</p>
+</blockquote>
+<h2 id="基線-baseline">基線 baseline</h2>
+<figure data-type="image" tabindex="1"><img src="https://i.imgur.com/3wQe8Rf.jpg" alt="文字頂線至底線標記圖" loading="lazy"></figure>
+<blockquote>
+<p>圖片來源：https://zhuanlan.zhihu.com/p/28626505</p>
+</blockquote>
+<h3 id="圖片下方有空白-跟父層之間有距離導致無法滿版">圖片下方有空白、跟父層之間有距離，導致無法滿版</h3>
+<p><mark>此狀況僅在 HTML5 才會出現</mark></p>
+<!-- CodePen Start-->
+<iframe height="321" style="width: 100%;" scrolling="no" title="img_vertcial_align" src="https://codepen.io/dexuan90213/embed/BaaJYdm?height=321&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/BaaJYdm'>img_vertcial_align</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen end-->
+<blockquote>
+<ol>
+<li><code>&lt;img&gt;</code> 為 <code>inline</code> 資料，預設垂直對齊為 <code>baseline</code> ，所以會有底線的空白區域，上方範例跟其他<code>inline</code> 的資料垂直對齊於 <code>baseline</code> ，可明顯看到圖片下邊對齊文字的基線。</li>
+<li><mark>只有一張圖片的情況下，也是會有底線的空白區域</mark></li>
+</ol>
+</blockquote>
+<h3 id="解決方式">解決方式</h3>
+<p>設定圖片 <code>vertical-align</code> 屬性為 <code>top</code>、<code>middle</code>、<code>bottom</code>，其中一種即可，只要不是 <code>baseline</code> 都可以解決</p>
+<!-- CodePen Start-->
+<iframe height="265" style="width: 100%;" scrolling="no" title="img_vertcial_align_fixed" src="https://codepen.io/dexuan90213/embed/VwwyXxx?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/VwwyXxx'>img_vertcial_align_fixed</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen end-->
+<h2 id="inline-inline-block-對空白字元的處理方式">inline、inline-block 對空白字元的處理方式</h2>
+<h3 id="對空白字元是保留什麼意思呢">對空白字元是保留，什麼意思呢？</h3>
+<p>下方以 CodePen 製作兩個 <code>inline-block</code> 物件，A、B 兩個 <code>div</code> 設定為 <code>inline-block</code></p>
+<!-- CodePen Start-->
+<iframe height="227" style="width: 100%;" scrolling="no" title="inline對於空白字元的處理" src="https://codepen.io/dexuan90213/embed/gOOoyWY?height=227&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/gOOoyWY'>inline對於空白字元的處理</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen End-->
+<p>疑？奇怪了，兩個之間明明沒有多空格！ 怎麼會有中間的空白區域。</p>
+<p>A、Ｂ 之間的空白區域位於換行所產生的空格，如下圖紅框處：<br>
+<img src="https://i.imgur.com/RnUqCo0.png" alt="換行空白標示" loading="lazy"></p>
+<h3 id="既然換行會產生空格那不要換行不就可以解決的嗎">既然換行會產生空格，那不要換行不就可以解決的嗎！</h3>
+<p>Yes!，不要換行的確能解決</p>
+<!-- CodePen Start-->
+<iframe height="265" style="width: 100%;" scrolling="no" title="inline對於空白字元的處理＿不換行" src="https://codepen.io/dexuan90213/embed/QWWaPJv?height=265&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/QWWaPJv'>inline對於空白字元的處理＿不換行</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen End-->
+<p>但是總不可能不換行的寫在同一行。</p>
+<h3 id="那這樣該怎麼辦-換行會有空白不換行不會有空白">那這樣該怎麼辦？ 換行會有空白，不換行不會有空白</h3>
+<p>在 <code>inline</code>、<code>inline-block</code> 下，HTML 元素標籤之間的空格、換行、Tab 空格、或連續多個空格（只會視為一個），將會佔用一個空格的空間。</p>
+<h4 id="解法">解法</h4>
+<p>空格在父層產生的，把父層的 <code>font-size</code> 設定成 0，這樣空格就消失囉！</p>
+ <!-- CodePen Start-->
+ <iframe height="265" style="width: 100%;" scrolling="no" title="inline對於空白字元的處理_font-size_0" src="https://codepen.io/dexuan90213/embed/jOOYRoG?height=265&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/jOOYRoG'>inline對於空白字元的處理_font-size_0</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen End-->
+<p><strong>欸～等等！可是這樣我的文字消失了，怎麼辦！</strong></p>
+<blockquote>
+<p>因文字的設定會繼承，在父層套用文字設定，子層會繼承父層的設定，所以文字也一併變成 0 囉！</p>
+</blockquote>
+<p><strong>再把子層的 <code>font-size</code> 加回來就好囉！</strong></p>
+<p>以下範例， 在 A、B 兩個 class 設定 <code>font-size</code>，文字就回來了。</p>
+<!-- CodePen Start-->
+<iframe height="352" style="width: 100%;" scrolling="no" title="inline對於空白字元的處理_font-size_0" src="https://codepen.io/dexuan90213/embed/KKKZYOy?height=352&theme-id=0&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dexuan90213/pen/KKKZYOy'>inline對於空白字元的處理_font-size_0</a> by 楊德軒
+  (<a href='https://codepen.io/dexuan90213'>@dexuan90213</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+<!-- CodePen End-->
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#inline-block-inline-block-%E6%AF%94%E8%BC%83%E8%A1%A8">inline、block、inline-block 比較表</a>
+<ul>
+<li><a href="#o-%E8%A1%A8%E7%A4%BA%E6%94%AF%E6%8F%B4x-%E8%A1%A8%E7%A4%BA%E4%B8%8D%E6%94%AF%E6%8F%B4">O 表示支援，Ｘ 表示不支援</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9F%BA%E7%B7%9A-baseline">基線 baseline</a>
+<ul>
+<li><a href="#%E5%9C%96%E7%89%87%E4%B8%8B%E6%96%B9%E6%9C%89%E7%A9%BA%E7%99%BD-%E8%B7%9F%E7%88%B6%E5%B1%A4%E4%B9%8B%E9%96%93%E6%9C%89%E8%B7%9D%E9%9B%A2%E5%B0%8E%E8%87%B4%E7%84%A1%E6%B3%95%E6%BB%BF%E7%89%88">圖片下方有空白、跟父層之間有距離，導致無法滿版</a></li>
+<li><a href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F">解決方式</a></li>
+</ul>
+</li>
+<li><a href="#inline-inline-block-%E5%B0%8D%E7%A9%BA%E7%99%BD%E5%AD%97%E5%85%83%E7%9A%84%E8%99%95%E7%90%86%E6%96%B9%E5%BC%8F">inline、inline-block 對空白字元的處理方式</a>
+<ul>
+<li><a href="#%E5%B0%8D%E7%A9%BA%E7%99%BD%E5%AD%97%E5%85%83%E6%98%AF%E4%BF%9D%E7%95%99%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2">對空白字元是保留，什麼意思呢？</a></li>
+<li><a href="#%E6%97%A2%E7%84%B6%E6%8F%9B%E8%A1%8C%E6%9C%83%E7%94%A2%E7%94%9F%E7%A9%BA%E6%A0%BC%E9%82%A3%E4%B8%8D%E8%A6%81%E6%8F%9B%E8%A1%8C%E4%B8%8D%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%A7%A3%E6%B1%BA%E7%9A%84%E5%97%8E">既然換行會產生空格，那不要換行不就可以解決的嗎！</a></li>
+<li><a href="#%E9%82%A3%E9%80%99%E6%A8%A3%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%BE%A6-%E6%8F%9B%E8%A1%8C%E6%9C%83%E6%9C%89%E7%A9%BA%E7%99%BD%E4%B8%8D%E6%8F%9B%E8%A1%8C%E4%B8%8D%E6%9C%83%E6%9C%89%E7%A9%BA%E7%99%BD">那這樣該怎麼辦？ 換行會有空白，不換行不會有空白</a>
+<ul>
+<li><a href="#%E8%A7%A3%E6%B3%95">解法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.ydx.tw/post/5d0GiOx9U/">
+              <h3 class="post-title">
+                建立第一個 Rails 應用程式
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://blog.ydx.tw/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>安裝 Ruby 及 Ruby on Rails | YDX</title>
+<link rel="shortcut icon" href="https://dexuan90213.github.io/favicon.ico?v=1585080335028">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://dexuan90213.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="安裝 Ruby 及 Ruby on Rails | YDX - Atom Feed" href="https://dexuan90213.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="安裝 Ruby
+使用 rvm 套件管理器安裝 Ruby
+
+不需要 root 權限
+可切換不同版本的 Ruby
+
+
+查詢是否內建 Ruby
+
+$ which ruby
+# &gt; /usr/bin/ruby # 系統內建的 Ruby
+
+
+安..." />
+    <meta name="keywords" content="Rails,Ruby,Ruby on Rails" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://dexuan90213.github.io">
+  <img class="avatar" src="https://dexuan90213.github.io/images/avatar.png?v=1585080335028" alt="">
+  </a>
+  <h1 class="site-title">
+    YDX
+  </h1>
+  <p class="site-description">
+    
+  </p>
+  <div class="menu-container">
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              安裝 Ruby 及 Ruby on Rails
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-25
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://dexuan90213.github.io/tag/PPX45SgkG/" class="post-tag">
+                  # Rails
+                </a>
+              
+                <a href="https://dexuan90213.github.io/tag/n-X-2DAVZ/" class="post-tag">
+                  # Ruby
+                </a>
+              
+                <a href="https://dexuan90213.github.io/tag/spF98fOWq/" class="post-tag">
+                  # Ruby on Rails
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="安裝-ruby">安裝 Ruby</h2>
+<h3 id="使用-rvm-套件管理器安裝-ruby">使用 rvm 套件管理器安裝 Ruby</h3>
+<ol>
+<li>不需要 root 權限</li>
+<li>可切換不同版本的 Ruby</li>
+</ol>
+<ul>
+<li>查詢是否內建 Ruby</li>
+</ul>
+<pre><code class="language-bash">$ which ruby
+# &gt; /usr/bin/ruby # 系統內建的 Ruby
+</code></pre>
+<ul>
+<li>安裝 rvm <a href="https://rvm.io">官網</a></li>
+</ul>
+<pre><code class="language-bash">$ rvm list # 查看 rvm 已經安裝的 Ruby 版本
+$ rvm list known # 列出目前可以安裝的 Ruby 版本有哪些
+$ rvm get master # 更新 list known 列表
+$ rvm -v # 顯示 rvm 版本
+</code></pre>
+<ul>
+<li>使用 rvm 安裝 Ruby</li>
+</ul>
+<pre><code class="language-bash">$ rvm install 2.6.5 # 安裝 Ruby 2.6.5 版本
+</code></pre>
+<ul>
+<li>切換 Ruby 版本</li>
+</ul>
+<pre><code class="language-bash">$ rvm use 2.6.3 # 使用 2.6.3 版本
+</code></pre>
+<ul>
+<li>設定某個版本為預設值<br>
+下次開啟終端機後，執行 Ruby 就是所指定的版本號了</li>
+</ul>
+<pre><code class="language-bash">$ rvm user 2.6.3 --default
+</code></pre>
+<ul>
+<li>移除特定的版本</li>
+</ul>
+<pre><code class="language-bash">$ rvm uninstall 2.6.3
+</code></pre>
+<h3 id="安裝-ruby-on-rails">安裝 Ruby on Rails</h3>
+<pre><code class="language-bash">$ gem install rails
+</code></pre>
+<blockquote>
+<p>會到 Rubygems.org 安裝最新版本的 Rails</p>
+</blockquote>
+<h3 id="安裝特定版本的-rails">安裝特定版本的 Rails</h3>
+<pre><code class="language-bash">$ gem install rails -v 5.2.3
+</code></pre>
+<blockquote>
+<p>參數 <code>-v</code> 指定要安裝的版本</p>
+</blockquote>
+<h3 id="安裝嚐鮮版本的-rails">安裝嚐鮮版本的 Rails</h3>
+<pre><code class="language-bash">$ gem install rails --pre
+</code></pre>
+<h3 id="查看已安裝的-gem">查看已安裝的 gem</h3>
+<pre><code class="language-bash">$ gem list
+
+*** LOCAL GEMS ***
+
+aasm (5.0.6)
+actioncable (6.0.1, 6.0.0, 5.2.3)
+actionmailbox (6.0.1, 6.0.0)
+actionmailer (6.0.1, 6.0.0, 5.2.3)
+actionpack (6.0.1, 6.0.0, 5.2.3)
+actiontext (6.0.1, 6.0.0)
+actionview (6.0.1, 6.0.0, 5.2.3)
+activejob (6.0.1, 6.0.0, 5.2.3)
+activemodel (6.0.1, 6.0.0, 5.2.3)
+activerecord (6.0.1, 6.0.0, 5.2.3)
+activestorage (6.0.1, 6.0.0, 5.2.3)
+activesupport (6.0.1, 6.0.0, 5.2.3, 4.2.10)
+addressable (2.7.0)
+archive-zip (0.12.0)
+...以下略...
+</code></pre>
+<h4 id="搭配-grep-過濾文字">搭配 grep 過濾文字</h4>
+<pre><code class="language-bash">$ gem list | grep rails
+
+autoprefixer-rails (9.6.1.1)
+coffee-rails (4.2.2)
+factory_bot_rails (5.0.2)
+jquery-rails (4.3.5)
+rails (6.0.1, 6.0.0, 5.2.3)
+rails-dom-testing (2.0.3)
+rails-html-sanitizer (1.3.0, 1.2.0)
+rspec-rails (3.8.2)
+sass-rails (6.0.0, 5.1.0)
+sassc-rails (2.1.2)
+sprockets-rails (3.2.1)
+</code></pre>
+<h4 id="也可以繼續迭代下去">也可以繼續迭代下去</h4>
+<pre><code class="language-bash">$ gem list | grep rails | grep 6
+
+autoprefixer-rails (9.6.1.1)
+rails (6.0.1, 6.0.0, 5.2.3)
+sass-rails (6.0.0, 5.1.0)
+</code></pre>
+<h3 id="檢查-rails-目前版本">檢查 Rails 目前版本</h3>
+<pre><code class="language-bash">$ rails -v 
+# Rails 6.0.1
+</code></pre>
+<h3 id="在-rails-523-專案底下執行-rails-v">在 Rails 5.2.3 專案底下執行 rails -v</h3>
+<pre><code class="language-bash">$ rails -v 
+# Rails 5.2.3
+</code></pre>
+<blockquote>
+<p><code>rails -v</code> 會去上層找 有沒有 <code>bin/rails</code> 資料夾或檔案，當找到專案的 <code>bin/rails</code>，則執行該專案所使用的 rails 版本 ，如果都沒有，則執行目前所安裝最新版本的 Rails</p>
+</blockquote>
+<h3 id="rails-6-要多安裝-yarn">Rails 6 要多安裝 yarn</h3>
+<ul>
+<li>Rails 6 預設啟用 webpacker 作為 JavaScript 文件管理方案</li>
+<li>在建立專案前先確認有無安裝 <code>yarn</code></li>
+<li>使用 <code>$ yarn -v</code> 如果沒有顯示版本號，則要先安裝</li>
+</ul>
+<blockquote>
+<p>各個平台的安裝方式參考官網<br>
+<a href="https://yarnpkg.com/en/docs/install">安裝 yarn</a></p>
+</blockquote>
+<h2 id="ruby-coding-style">Ruby Coding Style</h2>
+<blockquote>
+<p><a href="https://github.com/rubocop-hq/ruby-style-guide">Coding Style</a></p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%9D-ruby">安裝 Ruby</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-rvm-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E5%AE%89%E8%A3%9D-ruby">使用 rvm 套件管理器安裝 Ruby</a></li>
+<li><a href="#%E5%AE%89%E8%A3%9D-ruby-on-rails">安裝 Ruby on Rails</a></li>
+<li><a href="#%E5%AE%89%E8%A3%9D%E7%89%B9%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84-rails">安裝特定版本的 Rails</a></li>
+<li><a href="#%E5%AE%89%E8%A3%9D%E5%9A%90%E9%AE%AE%E7%89%88%E6%9C%AC%E7%9A%84-rails">安裝嚐鮮版本的 Rails</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E5%AE%89%E8%A3%9D%E7%9A%84-gem">查看已安裝的 gem</a>
+<ul>
+<li><a href="#%E6%90%AD%E9%85%8D-grep-%E9%81%8E%E6%BF%BE%E6%96%87%E5%AD%97">搭配 grep 過濾文字</a></li>
+<li><a href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%B9%BC%E7%BA%8C%E8%BF%AD%E4%BB%A3%E4%B8%8B%E5%8E%BB">也可以繼續迭代下去</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AA%A2%E6%9F%A5-rails-%E7%9B%AE%E5%89%8D%E7%89%88%E6%9C%AC">檢查 Rails 目前版本</a></li>
+<li><a href="#%E5%9C%A8-rails-523-%E5%B0%88%E6%A1%88%E5%BA%95%E4%B8%8B%E5%9F%B7%E8%A1%8C-rails-v">在 Rails 5.2.3 專案底下執行 rails -v</a></li>
+<li><a href="#rails-6-%E8%A6%81%E5%A4%9A%E5%AE%89%E8%A3%9D-yarn">Rails 6 要多安裝 yarn</a></li>
+</ul>
+</li>
+<li><a href="#ruby-coding-style">Ruby Coding Style</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://dexuan90213.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
